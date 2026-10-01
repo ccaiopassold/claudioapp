@@ -1,2 +1,2 @@
 .env
-JWT_SECRET
+node_modules/
