@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import pool from "./config/database.js";
 import authRoutes from "./routes/authRoutes.js";
+import habitoRoutes from "./routes/habitoRoutes.js";
+import compromissoRoutes from "./routes/compromissoRoutes.js";
 
 dotenv.config();
 
@@ -13,7 +15,8 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
-
+app.use("/api/habitos", habitoRoutes);
+app.use("/api/compromissos", compromissoRoutes);
 
 app.get("/", (req, res) => {
     res.json({

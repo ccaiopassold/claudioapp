@@ -455,3 +455,290 @@ body {
         width: 240px;
     }
 }
+
+/* ========================================
+   DASHBOARD
+======================================== */
+
+.tela-dashboard {
+    min-height: 100vh;
+    background-color: #F8F7F2;
+    color: #293241;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+}
+
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.dashboard-marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-dashboard {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.dashboard-marca strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.dashboard-marca span {
+    display: block;
+    margin-top: 3px;
+    font-size: 12px;
+    color: #CBD5E1;
+}
+
+.btn-sair {
+    border: none;
+    background: transparent;
+    color: #293241;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.btn-sair:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   BOAS-VINDAS
+======================================== */
+
+.dashboard-boas-vindas {
+    margin-bottom: 28px;
+}
+
+.dashboard-data {
+    margin-bottom: 8px;
+    color: #2E9B6F;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dashboard-boas-vindas h1 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.dashboard-boas-vindas p:last-child {
+    margin-top: 8px;
+    color: #64748B;
+    font-size: 15px;
+}
+
+
+/* ========================================
+   RESUMO
+======================================== */
+
+.dashboard-resumo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+}
+
+.resumo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+}
+
+.resumo-icone {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    border-radius: 12px;
+    background-color: #A7D7C5;
+
+    color: #293241;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.resumo-item strong {
+    display: block;
+    font-size: 22px;
+}
+
+.resumo-item div span {
+    display: block;
+    margin-top: 2px;
+    color: #64748B;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   AÇÕES
+======================================== */
+
+.dashboard-acoes h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.dashboard-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 12px;
+    padding: 18px;
+
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+
+    background-color: #FFFFFF;
+    color: #293241;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(41, 50, 65, 0.08);
+}
+
+.dashboard-card-icone {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background-color: #2E9B6F;
+    color: #FFFFFF;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.dashboard-card div:nth-child(2) {
+    flex: 1;
+}
+
+.dashboard-card strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.dashboard-card div span {
+    display: block;
+    color: #64748B;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.dashboard-seta {
+    font-size: 22px;
+    color: #2E9B6F;
+}
+
+
+/* ========================================
+   FRASE
+======================================== */
+
+.dashboard-frase {
+    margin-top: 32px;
+    padding: 20px;
+
+    border-top: 1px solid #E2E8F0;
+
+    text-align: center;
+}
+
+.dashboard-frase p {
+    margin: 0;
+
+    color: #64748B;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 480px) {
+
+    .dashboard-container {
+        padding: 20px 16px 32px;
+    }
+
+    .dashboard-header {
+        margin-bottom: 32px;
+    }
+
+    .dashboard-boas-vindas h1 {
+        font-size: 28px;
+    }
+
+    .dashboard-resumo {
+        gap: 10px;
+    }
+
+    .resumo-item {
+        padding: 14px;
+    }
+
+    .resumo-icone {
+        width: 36px;
+        height: 36px;
+    }
+
+    .dashboard-card {
+        padding: 15px;
+    }
+
+}

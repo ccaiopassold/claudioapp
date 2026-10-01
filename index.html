@@ -108,6 +108,7 @@
 
                 <p class="troca-auth">
                     Ainda não possui uma conta?
+
                     <button id="btnIrCadastro" class="btn-link-inline">
                         Criar conta
                     </button>
@@ -198,6 +199,7 @@
 
                 <p class="troca-auth">
                     Já possui uma conta?
+
                     <button id="btnIrLogin" class="btn-link-inline">
                         Entrar
                     </button>
@@ -207,9 +209,194 @@
 
         </section>
 
+
+        <!-- ==============================
+             DASHBOARD
+        =============================== -->
+
+        <section id="telaDashboard" class="tela tela-dashboard escondida">
+
+            <div class="dashboard-container">
+
+                <!-- CABEÇALHO -->
+
+                <header class="dashboard-header">
+
+                    <div class="dashboard-marca">
+
+                        <img
+                            src="assets/img/claudio.png"
+                            alt="Claudio"
+                            class="logo-dashboard"
+                        >
+
+                        <div>
+                            <strong>ClaudioCK</strong>
+
+                            <span>
+                                Sua rotina, organizada.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        id="btnSair"
+                        class="btn-sair"
+                        type="button"
+                    >
+                        Sair
+                    </button>
+
+                </header>
+
+
+                <!-- SAUDAÇÃO -->
+
+                <div class="dashboard-boas-vindas">
+
+                    <p class="dashboard-data">
+                        Seu dia começa aqui
+                    </p>
+
+                    <h1>
+                        Olá, <span id="nomeUsuario">Claudio</span>!
+                    </h1>
+
+                    <p>
+                        Vamos organizar sua rotina?
+                    </p>
+
+                </div>
+
+
+                <!-- RESUMO -->
+
+                <section class="dashboard-resumo">
+
+                    <article class="resumo-item">
+
+                        <span class="resumo-icone">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong id="totalHabitos">
+                                0
+                            </strong>
+
+                            <span>
+                                Hábitos
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="resumo-item">
+
+                        <span class="resumo-icone">
+                            ◷
+                        </span>
+
+                        <div>
+                            <strong id="totalCompromissos">
+                                0
+                            </strong>
+
+                            <span>
+                                Compromissos
+                            </span>
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- AÇÕES -->
+
+                <section class="dashboard-acoes">
+
+                    <h2>
+                        Organize sua rotina
+                    </h2>
+
+
+                    <button
+                        id="btnHabitos"
+                        class="dashboard-card"
+                        type="button"
+                    >
+
+                        <div class="dashboard-card-icone">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                Meus hábitos
+                            </strong>
+
+                            <span>
+                                Acompanhe e organize seus hábitos.
+                            </span>
+                        </div>
+
+                        <span class="dashboard-seta">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        id="btnCompromissos"
+                        class="dashboard-card"
+                        type="button"
+                    >
+
+                        <div class="dashboard-card-icone">
+                            ◷
+                        </div>
+
+                        <div>
+                            <strong>
+                                Meus compromissos
+                            </strong>
+
+                            <span>
+                                Organize seus compromissos e horários.
+                            </span>
+                        </div>
+
+                        <span class="dashboard-seta">
+                            →
+                        </span>
+
+                    </button>
+
+                </section>
+
+
+                <!-- FRASE -->
+
+                <div class="dashboard-frase">
+
+                    <p>
+                        “Pequenos passos constroem grandes rotinas.”
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
-  <script src="script.js?v=3"></script>
+
+<script src="script.js?v=10"></script>
 
 </body>
 
