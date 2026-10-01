@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ClaudioCK</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main id="app">
+
+        <!-- ==============================
+             SPLASH
+        =============================== -->
+
+        <section id="telaSplash" class="tela tela-splash">
+
+            <div class="splash-content">
+
+                <img
+                    src="assets/img/claudio.png"
+                    alt="Claudio fazendo sinal de positivo"
+                    class="logo-claudio"
+                >
+
+                <p class="slogan">
+                    Organize seu dia.<br>
+                    Construa sua rotina.
+                </p>
+
+                <button id="btnComecar" class="btn-principal">
+                    Começar
+                </button>
+
+            </div>
+
+            <div class="ondas">
+                <div class="onda onda-1"></div>
+                <div class="onda onda-2"></div>
+                <div class="onda onda-3"></div>
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             LOGIN
+        =============================== -->
+
+        <section id="telaLogin" class="tela tela-auth escondida">
+
+            <div class="auth-container">
+
+                <button id="btnVoltarLogin" class="btn-voltar">
+                    ← Voltar
+                </button>
+
+                <img
+                    src="assets/img/claudio.png"
+                    alt="Claudio"
+                    class="logo-auth"
+                >
+
+                <h1>Bem-vindo de volta!</h1>
+
+                <p class="auth-subtitulo">
+                    Entre na sua conta para continuar.
+                </p>
+
+                <form id="formLogin">
+
+                    <div class="campo">
+                        <label for="loginEmail">E-mail</label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Digite seu e-mail"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="loginSenha">Senha</label>
+
+                        <input
+                            type="password"
+                            id="loginSenha"
+                            placeholder="Digite sua senha"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-principal">
+                        Entrar
+                    </button>
+
+                </form>
+
+                <button id="btnEsqueciSenha" class="btn-link">
+                    Esqueci minha senha
+                </button>
+
+                <p class="troca-auth">
+                    Ainda não possui uma conta?
+                    <button id="btnIrCadastro" class="btn-link-inline">
+                        Criar conta
+                    </button>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             CADASTRO
+        =============================== -->
+
+        <section id="telaCadastro" class="tela tela-auth escondida">
+
+            <div class="auth-container">
+
+                <button id="btnVoltarCadastro" class="btn-voltar">
+                    ← Voltar
+                </button>
+
+                <img
+                    src="assets/img/claudio.png"
+                    alt="Claudio"
+                    class="logo-auth"
+                >
+
+                <h1>Criar sua conta</h1>
+
+                <p class="auth-subtitulo">
+                    Comece a organizar sua rotina.
+                </p>
+
+                <form id="formCadastro">
+
+                    <div class="campo">
+                        <label for="cadastroNome">Nome</label>
+
+                        <input
+                            type="text"
+                            id="cadastroNome"
+                            placeholder="Como podemos te chamar?"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="cadastroEmail">E-mail</label>
+
+                        <input
+                            type="email"
+                            id="cadastroEmail"
+                            placeholder="Digite seu e-mail"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="cadastroSenha">Senha</label>
+
+                        <input
+                            type="password"
+                            id="cadastroSenha"
+                            placeholder="Crie uma senha"
+                            minlength="6"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="confirmarSenha">Confirmar senha</label>
+
+                        <input
+                            type="password"
+                            id="confirmarSenha"
+                            placeholder="Digite a senha novamente"
+                            minlength="6"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-principal">
+                        Criar conta
+                    </button>
+
+                </form>
+
+                <p class="troca-auth">
+                    Já possui uma conta?
+                    <button id="btnIrLogin" class="btn-link-inline">
+                        Entrar
+                    </button>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+  <script src="script.js?v=3"></script>
+
+</body>
+
+</html>
