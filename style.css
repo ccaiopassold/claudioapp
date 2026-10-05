@@ -23,6 +23,12 @@
 
     --fundo: #F8F7F2;
     --branco: #FFFFFF;
+
+    --borda: #E2E8F0;
+    --borda-input: #CBD5E1;
+
+    --vermelho: #B42318;
+    --fundo-hover: #F1F5F9;
 }
 
 
@@ -32,10 +38,8 @@
 
 body {
     font-family: "Inter", "Segoe UI", Arial, sans-serif;
-
     background-color: var(--fundo);
     color: var(--azul);
-
     min-height: 100vh;
 }
 
@@ -69,7 +73,6 @@ body {
 
 .tela-splash {
     position: relative;
-
     overflow: hidden;
 
     display: flex;
@@ -79,10 +82,8 @@ body {
     text-align: center;
 }
 
-
 .splash-content {
     position: relative;
-
     z-index: 10;
 
     width: 100%;
@@ -109,7 +110,6 @@ body {
     margin-bottom: 18px;
 }
 
-
 .slogan {
     color: var(--cinza);
 
@@ -127,39 +127,27 @@ body {
 .btn-principal {
     width: min(100%, 280px);
 
-    padding: 15px 30px;
+    padding: 13px 22px;
 
     border: none;
-    border-radius: 50px;
+    border-radius: 12px;
 
     background-color: var(--verde);
     color: var(--branco);
 
-    font-size: 16px;
+    font-family: inherit;
+    font-size: 14px;
     font-weight: 600;
 
     cursor: pointer;
+
+    align-self: center;
 
     transition:
         background-color 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
-
-
-.btn-principal:hover {
-    background-color: var(--verde-escuro);
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 8px 20px rgba(46, 155, 111, 0.25);
-}
-
-
-.btn-principal:active {
-    transform: translateY(0);
-}
-
 
 /* ========================================
    ONDAS
@@ -177,7 +165,6 @@ body {
     z-index: 1;
 }
 
-
 .onda {
     position: absolute;
 
@@ -189,30 +176,21 @@ body {
     border-radius: 50% 50% 0 0;
 }
 
-
 .onda-1 {
     bottom: 0;
-
     background-color: var(--verde-claro);
-
     transform: rotate(-2deg);
 }
 
-
 .onda-2 {
     bottom: 25px;
-
     background-color: rgba(46, 155, 111, 0.18);
-
     transform: rotate(3deg);
 }
 
-
 .onda-3 {
     bottom: 55px;
-
     background-color: rgba(167, 215, 197, 0.45);
-
     transform: rotate(-4deg);
 }
 
@@ -230,7 +208,6 @@ body {
     padding: 30px 20px;
 }
 
-
 .auth-container {
     width: 100%;
     max-width: 430px;
@@ -246,20 +223,26 @@ body {
 ======================================== */
 
 .btn-voltar {
-    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    background-color: transparent;
     border: none;
 
     color: var(--cinza);
 
-    font-size: 15px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
 
     cursor: pointer;
 
     padding: 8px 0;
-
     margin-bottom: 20px;
-}
 
+    transition: color 0.2s ease;
+}
 
 .btn-voltar:hover {
     color: var(--verde);
@@ -295,7 +278,6 @@ body {
     margin-bottom: 8px;
 }
 
-
 .auth-subtitulo {
     text-align: center;
 
@@ -308,34 +290,26 @@ body {
 
 
 /* ========================================
-   FORMULÁRIO
+   FORMULÁRIO AUTH
 ======================================== */
 
 #formLogin,
 #formCadastro {
     display: flex;
-
     flex-direction: column;
-
     gap: 18px;
 }
 
-
 .campo {
     display: flex;
-
     flex-direction: column;
-
     gap: 7px;
 }
 
-
 .campo label {
     font-size: 14px;
-
     font-weight: 600;
 }
-
 
 .campo input {
     width: 100%;
@@ -349,6 +323,7 @@ body {
 
     color: var(--azul);
 
+    font-family: inherit;
     font-size: 15px;
 
     outline: none;
@@ -358,13 +333,12 @@ body {
         box-shadow 0.2s ease;
 }
 
-
 .campo input:focus {
     border-color: var(--verde);
 
-    box-shadow: 0 0 0 3px rgba(46, 155, 111, 0.12);
+    box-shadow:
+        0 0 0 3px rgba(46, 155, 111, 0.12);
 }
-
 
 .campo input::placeholder {
     color: #9AA3AF;
@@ -385,16 +359,15 @@ body {
 
     color: var(--verde);
 
+    font-family: inherit;
     font-size: 14px;
 
     cursor: pointer;
 }
 
-
 .btn-link:hover {
     text-decoration: underline;
 }
-
 
 .troca-auth {
     text-align: center;
@@ -406,18 +379,17 @@ body {
     margin-top: 28px;
 }
 
-
 .btn-link-inline {
     background: none;
     border: none;
 
     color: var(--verde);
 
+    font-family: inherit;
     font-weight: 600;
 
     cursor: pointer;
 }
-
 
 .btn-link-inline:hover {
     text-decoration: underline;
@@ -425,64 +397,36 @@ body {
 
 
 /* ========================================
-   RESPONSIVIDADE
-======================================== */
-
-@media (max-width: 480px) {
-
-    .logo-claudio {
-        width: 340px;
-        max-width: 92vw;
-    }
-
-
-    .logo-auth {
-        width: 170px;
-    }
-
-
-    .auth-container h1 {
-        font-size: 25px;
-    }
-
-
-    .slogan {
-        font-size: 15px;
-    }
-
-
-    .btn-principal {
-        width: 240px;
-    }
-}
-
-/* ========================================
    DASHBOARD
 ======================================== */
 
 .tela-dashboard {
     min-height: 100vh;
-    background-color: #F8F7F2;
-    color: #293241;
+    background-color: var(--fundo);
+    color: var(--azul);
 }
 
 .dashboard-container {
     width: 100%;
     max-width: 700px;
+
     margin: 0 auto;
+
     padding: 24px 20px 40px;
 }
 
 
 /* ========================================
-   CABEÇALHO
+   CABEÇALHO DASHBOARD
 ======================================== */
 
 .dashboard-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 16px;
+
     margin-bottom: 40px;
 }
 
@@ -495,34 +439,56 @@ body {
 .logo-dashboard {
     width: 52px;
     height: 52px;
+
     object-fit: contain;
 }
 
 .dashboard-marca strong {
     display: block;
+
     font-size: 20px;
     font-weight: 700;
 }
 
 .dashboard-marca span {
     display: block;
+
     margin-top: 3px;
+
     font-size: 12px;
-    color: #CBD5E1;
+    color: var(--cinza);
 }
 
+
+/* ========================================
+   BOTÃO SAIR
+======================================== */
+
 .btn-sair {
-    border: none;
-    background: transparent;
-    color: #293241;
-    font-size: 14px;
+    border: 1px solid var(--borda);
+    background-color: var(--branco);
+
+    color: var(--azul);
+
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 600;
+
     cursor: pointer;
-    padding: 8px;
+
+    padding: 9px 14px;
+
+    border-radius: 10px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 }
 
 .btn-sair:hover {
-    text-decoration: underline;
+    background-color: var(--fundo-hover);
+    border-color: var(--borda-input);
 }
 
 
@@ -536,20 +502,25 @@ body {
 
 .dashboard-data {
     margin-bottom: 8px;
-    color: #2E9B6F;
+
+    color: var(--verde);
+
     font-size: 14px;
     font-weight: 600;
 }
 
 .dashboard-boas-vindas h1 {
     margin: 0;
+
     font-size: 32px;
     line-height: 1.2;
 }
 
 .dashboard-boas-vindas p:last-child {
     margin-top: 8px;
-    color: #64748B;
+
+    color: var(--cinza);
+
     font-size: 15px;
 }
 
@@ -560,56 +531,73 @@ body {
 
 .dashboard-resumo {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     gap: 14px;
+
     margin-bottom: 36px;
 }
 
 .resumo-item {
     display: flex;
     align-items: center;
+
     gap: 12px;
+
     padding: 18px;
-    background-color: #FFFFFF;
-    border: 1px solid #E2E8F0;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+
     border-radius: 16px;
 }
 
 .resumo-icone {
     width: 42px;
     height: 42px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     flex-shrink: 0;
 
     border-radius: 12px;
-    background-color: #A7D7C5;
 
-    color: #293241;
+    background-color: var(--verde-claro);
+
+    color: var(--azul);
+
     font-size: 20px;
     font-weight: 700;
 }
 
 .resumo-item strong {
     display: block;
+
     font-size: 22px;
 }
 
 .resumo-item div span {
     display: block;
+
     margin-top: 2px;
-    color: #64748B;
+
+    color: var(--cinza);
+
     font-size: 13px;
 }
 
 
 /* ========================================
-   AÇÕES
+   AÇÕES DASHBOARD
 ======================================== */
 
 .dashboard-acoes h2 {
     margin-bottom: 16px;
+
     font-size: 20px;
 }
 
@@ -618,28 +606,35 @@ body {
 
     display: flex;
     align-items: center;
+
     gap: 14px;
 
     margin-bottom: 12px;
     padding: 18px;
 
-    border: 1px solid #E2E8F0;
+    border: 1px solid var(--borda);
     border-radius: 16px;
 
-    background-color: #FFFFFF;
-    color: #293241;
+    background-color: var(--branco);
+    color: var(--azul);
 
     text-align: left;
+
     cursor: pointer;
 
     transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .dashboard-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(41, 50, 65, 0.08);
+
+    border-color: var(--verde-claro);
+
+    box-shadow:
+        0 6px 18px rgba(41, 50, 65, 0.08);
 }
 
 .dashboard-card-icone {
@@ -649,12 +644,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
     flex-shrink: 0;
 
     border-radius: 13px;
 
-    background-color: #2E9B6F;
-    color: #FFFFFF;
+    background-color: var(--verde);
+
+    color: var(--branco);
 
     font-size: 20px;
     font-weight: 700;
@@ -666,20 +663,24 @@ body {
 
 .dashboard-card strong {
     display: block;
+
     margin-bottom: 4px;
+
     font-size: 16px;
 }
 
 .dashboard-card div span {
     display: block;
-    color: #64748B;
+
+    color: var(--cinza);
+
     font-size: 13px;
     line-height: 1.4;
 }
 
 .dashboard-seta {
     font-size: 22px;
-    color: #2E9B6F;
+    color: var(--verde);
 }
 
 
@@ -691,7 +692,7 @@ body {
     margin-top: 32px;
     padding: 20px;
 
-    border-top: 1px solid #E2E8F0;
+    border-top: 1px solid var(--borda);
 
     text-align: center;
 }
@@ -699,7 +700,8 @@ body {
 .dashboard-frase p {
     margin: 0;
 
-    color: #64748B;
+    color: var(--cinza);
+
     font-size: 14px;
     font-style: italic;
     line-height: 1.5;
@@ -707,10 +709,683 @@ body {
 
 
 /* ========================================
+   TELAS DE HÁBITOS E COMPROMISSOS
+======================================== */
+
+.tela-habitos,
+.tela-compromissos {
+    min-height: 100vh;
+
+    background-color: var(--fundo);
+
+    color: var(--azul);
+}
+
+
+/* ========================================
+   CONTAINERS
+======================================== */
+
+.habitos-container,
+.compromissos-container {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 24px 20px 40px;
+}
+
+
+/* ========================================
+   CABEÇALHOS
+======================================== */
+
+.habitos-header,
+.compromissos-header {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    margin-bottom: 40px;
+}
+
+.habitos-header .btn-voltar,
+.compromissos-header .btn-voltar {
+    flex-shrink: 0;
+
+    margin-top: 2px;
+}
+
+.habitos-header h1,
+.compromissos-header h1 {
+    margin: 0;
+
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.habitos-header p,
+.compromissos-header p {
+    margin-top: 6px;
+
+    color: var(--cinza);
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   CONTEÚDO
+======================================== */
+
+.habitos-conteudo,
+.compromissos-conteudo {
+    width: 100%;
+}
+
+
+/* ========================================
+   TOPO DA LISTA
+======================================== */
+
+.habitos-topo,
+.compromissos-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+.habitos-topo h2,
+.compromissos-topo h2 {
+    margin: 0 0 5px;
+
+    font-size: 20px;
+}
+
+.habitos-topo p,
+.compromissos-topo p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   BOTÃO ADICIONAR
+======================================== */
+
+.btn-adicionar {
+    flex-shrink: 0;
+
+    width: auto;
+    min-width: 130px;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   LISTAS
+======================================== */
+
+.lista-habitos,
+.lista-compromissos {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* ========================================
+   ESTADO VAZIO
+======================================== */
+
+.habito-vazio,
+.compromisso-vazio {
+    padding: 32px 20px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.habito-vazio p,
+.compromisso-vazio p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   CARDS
+======================================== */
+
+.habito-item,
+.compromisso-item {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.habito-item:hover,
+.compromisso-item:hover {
+    border-color: var(--verde-claro);
+
+    box-shadow:
+        0 5px 16px rgba(41, 50, 65, 0.06);
+}
+
+
+/* ========================================
+   ÍCONES DOS CARDS
+======================================== */
+
+.habito-icone,
+.compromisso-icone {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background-color: var(--verde-claro);
+
+    color: var(--azul);
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   INFORMAÇÕES DOS CARDS
+======================================== */
+
+.habito-info,
+.compromisso-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.habito-info strong,
+.compromisso-info strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 16px;
+
+    overflow-wrap: anywhere;
+}
+
+.habito-info p,
+.compromisso-info p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   AÇÕES DOS CARDS
+======================================== */
+
+.habito-acoes,
+.compromisso-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   BOTÃO EDITAR
+======================================== */
+
+.habito-acao.editar,
+.compromisso-acao.editar {
+    min-width: 70px;
+    height: 36px;
+
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background-color: var(--verde);
+
+    color: var(--branco);
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.habito-acao.editar:hover,
+.compromisso-acao.editar:hover {
+    background-color: var(--verde-escuro);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   BOTÃO EXCLUIR
+======================================== */
+
+.habito-acao.excluir,
+.compromisso-acao.excluir {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #F1D0CD;
+
+    border-radius: 10px;
+
+    background-color: #FFF8F7;
+
+    color: var(--vermelho);
+
+    font-family: inherit;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.habito-acao.excluir:hover,
+.compromisso-acao.excluir:hover {
+    background-color: #FDECEA;
+
+    border-color: #E9B5AF;
+}
+
+/* ========================================
+   BOTÕES DE STATUS
+======================================== */
+
+.compromisso-acao.status-concluir,
+.compromisso-acao.status-nao-concluir,
+.compromisso-acao.status-pendente {
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 20px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* CONCLUIR */
+
+.compromisso-acao.status-concluir {
+    background-color: var(--verde);
+    color: var(--branco);
+}
+
+.compromisso-acao.status-concluir:hover {
+    background-color: var(--verde-escuro);
+    transform: translateY(-1px);
+}
+
+
+/* NÃO CONCLUÍDO */
+
+.compromisso-acao.status-nao-concluir {
+    background-color: #FFF1F0;
+    border: 1px solid #F1C5C1;
+
+    color: var(--vermelho);
+}
+
+.compromisso-acao.status-nao-concluir:hover {
+    background-color: #FDE5E3;
+    transform: translateY(-1px);
+}
+
+
+/* VOLTAR PARA PENDENTE */
+
+.compromisso-acao.status-pendente {
+    background-color: var(--fundo-hover);
+    border: 1px solid var(--borda-input);
+
+    color: var(--azul);
+}
+
+.compromisso-acao.status-pendente:hover {
+    background-color: #E2E8F0;
+    transform: translateY(-1px);
+}
+/* ========================================
+   FORMULÁRIOS
+======================================== */
+
+.formulario-habito,
+.formulario-compromisso {
+    margin-bottom: 24px;
+
+    padding: 22px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 14px rgba(41, 50, 65, 0.04);
+}
+
+.formulario-habito h3,
+.formulario-compromisso h3 {
+    margin: 0 0 20px;
+
+    font-size: 18px;
+
+    color: var(--azul);
+}
+
+
+/* ========================================
+   CAMPOS DOS FORMULÁRIOS
+======================================== */
+
+.campo-formulario {
+    margin-bottom: 16px;
+}
+
+.campo-formulario label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: var(--azul);
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--borda-input);
+
+    border-radius: 10px;
+
+    background-color: var(--branco);
+
+    color: var(--azul);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.campo-formulario textarea {
+    resize: vertical;
+
+    min-height: 100px;
+
+    line-height: 1.5;
+}
+
+.campo-formulario input::placeholder,
+.campo-formulario textarea::placeholder {
+    color: #9AA3AF;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+    border-color: var(--verde);
+
+    box-shadow:
+        0 0 0 3px rgba(46, 155, 111, 0.10);
+}
+
+
+/* ========================================
+   AÇÕES DO FORMULÁRIO
+======================================== */
+
+.acoes-formulario {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+/* ========================================
+   BOTÃO SECUNDÁRIO
+======================================== */
+
+.btn-secundario {
+    padding: 12px 18px;
+
+    border: 1px solid var(--borda-input);
+
+    border-radius: 10px;
+
+    background-color: var(--branco);
+
+    color: var(--azul);
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn-secundario:hover {
+    background-color: var(--fundo-hover);
+
+    border-color: #B8C2CF;
+}
+
+
+/* ========================================
+   MENSAGEM FORMULÁRIO
+======================================== */
+
+.mensagem-formulario {
+    margin: 12px 0 0;
+
+    font-size: 13px;
+
+    color: var(--vermelho);
+}
+
+
+/* ========================================
+   ESTADOS DOS COMPROMISSOS
+======================================== */
+
+/* PENDENTE */
+
+.compromisso-item.compromisso-pendente {
+    background-color: var(--branco);
+    border-color: var(--borda);
+}
+
+.compromisso-item.compromisso-pendente .compromisso-icone {
+    background-color: var(--verde-claro);
+    color: var(--azul);
+}
+
+
+/* CONCLUÍDO */
+
+.compromisso-item.compromisso-concluido {
+    background-color: #ECF8F2;
+    border-color: #BFE3D1;
+}
+
+.compromisso-item.compromisso-concluido .compromisso-icone {
+    background-color: #CFEBDD;
+    color: var(--verde-escuro);
+}
+
+.compromisso-item.compromisso-concluido .compromisso-info strong {
+    color: var(--verde-escuro);
+}
+
+
+/* NÃO CONCLUÍDO */
+
+.compromisso-item.compromisso-nao_concluido {
+    background-color: #FFF1F0;
+    border-color: #F1C5C1;
+}
+
+.compromisso-item.compromisso-nao_concluido .compromisso-icone {
+    background-color: #F8D9D5;
+    color: var(--vermelho);
+}
+
+.compromisso-item.compromisso-nao_concluido .compromisso-info strong {
+    color: var(--vermelho);
+}
+/* ========================================
    RESPONSIVIDADE
 ======================================== */
 
 @media (max-width: 480px) {
+
+    /* AUTH */
+
+    .logo-claudio {
+        width: 340px;
+        max-width: 92vw;
+    }
+
+    .logo-auth {
+        width: 170px;
+    }
+
+    .auth-container h1 {
+        font-size: 25px;
+    }
+
+    .slogan {
+        font-size: 15px;
+    }
+
+    .btn-principal {
+        width: 240px;
+    }
+
+
+    /* DASHBOARD */
 
     .dashboard-container {
         padding: 20px 16px 32px;
@@ -741,4 +1416,66 @@ body {
         padding: 15px;
     }
 
+
+    /* HÁBITOS / COMPROMISSOS */
+
+    .habitos-container,
+    .compromissos-container {
+        padding: 20px 16px 32px;
+    }
+
+    .habitos-header,
+    .compromissos-header {
+        gap: 12px;
+
+        margin-bottom: 32px;
+    }
+
+    .habitos-header h1,
+    .compromissos-header h1 {
+        font-size: 24px;
+    }
+
+    .habitos-topo,
+    .compromissos-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .btn-adicionar {
+        width: 100%;
+    }
+
+    .habito-item,
+    .compromisso-item {
+        align-items: flex-start;
+
+        padding: 14px;
+    }
+
+    .habito-acoes,
+    .compromisso-acoes {
+        flex-direction: column;
+    }
+
+
+    /* FORMULÁRIOS */
+
+    .formulario-habito,
+    .formulario-compromisso {
+        padding: 18px;
+    }
+
+    .acoes-formulario {
+        flex-direction: column;
+    }
+
+    .acoes-formulario button {
+        width: 100%;
+    }
+
+    .btn-sair {
+        padding: 8px 11px;
+    }
 }

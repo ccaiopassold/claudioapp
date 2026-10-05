@@ -8,6 +8,10 @@
     <title>ClaudioCK</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2E9B6F">
+<meta name="mobile-web-app-capable" content="yes">
 </head>
 
 <body>
@@ -33,16 +37,22 @@
                     Construa sua rotina.
                 </p>
 
-                <button id="btnComecar" class="btn-principal">
+                <button
+                    id="btnComecar"
+                    class="btn-principal"
+                    type="button"
+                >
                     Começar
                 </button>
 
             </div>
 
             <div class="ondas">
+
                 <div class="onda onda-1"></div>
                 <div class="onda onda-2"></div>
                 <div class="onda onda-3"></div>
+
             </div>
 
         </section>
@@ -52,11 +62,18 @@
              LOGIN
         =============================== -->
 
-        <section id="telaLogin" class="tela tela-auth escondida">
+        <section
+            id="telaLogin"
+            class="tela tela-auth escondida"
+        >
 
             <div class="auth-container">
 
-                <button id="btnVoltarLogin" class="btn-voltar">
+                <button
+                    id="btnVoltarLogin"
+                    class="btn-voltar"
+                    type="button"
+                >
                     ← Voltar
                 </button>
 
@@ -66,7 +83,9 @@
                     class="logo-auth"
                 >
 
-                <h1>Bem-vindo de volta!</h1>
+                <h1>
+                    Bem-vindo de volta!
+                </h1>
 
                 <p class="auth-subtitulo">
                     Entre na sua conta para continuar.
@@ -75,7 +94,10 @@
                 <form id="formLogin">
 
                     <div class="campo">
-                        <label for="loginEmail">E-mail</label>
+
+                        <label for="loginEmail">
+                            E-mail
+                        </label>
 
                         <input
                             type="email"
@@ -83,10 +105,15 @@
                             placeholder="Digite seu e-mail"
                             required
                         >
+
                     </div>
 
+
                     <div class="campo">
-                        <label for="loginSenha">Senha</label>
+
+                        <label for="loginSenha">
+                            Senha
+                        </label>
 
                         <input
                             type="password"
@@ -94,24 +121,31 @@
                             placeholder="Digite sua senha"
                             required
                         >
+
                     </div>
 
-                    <button type="submit" class="btn-principal">
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
                         Entrar
                     </button>
 
                 </form>
 
-                <button id="btnEsqueciSenha" class="btn-link">
-                    Esqueci minha senha
-                </button>
-
                 <p class="troca-auth">
+
                     Ainda não possui uma conta?
 
-                    <button id="btnIrCadastro" class="btn-link-inline">
+                    <button
+                        id="btnIrCadastro"
+                        class="btn-link-inline"
+                        type="button"
+                    >
                         Criar conta
                     </button>
+
                 </p>
 
             </div>
@@ -123,11 +157,18 @@
              CADASTRO
         =============================== -->
 
-        <section id="telaCadastro" class="tela tela-auth escondida">
+        <section
+            id="telaCadastro"
+            class="tela tela-auth escondida"
+        >
 
             <div class="auth-container">
 
-                <button id="btnVoltarCadastro" class="btn-voltar">
+                <button
+                    id="btnVoltarCadastro"
+                    class="btn-voltar"
+                    type="button"
+                >
                     ← Voltar
                 </button>
 
@@ -137,7 +178,9 @@
                     class="logo-auth"
                 >
 
-                <h1>Criar sua conta</h1>
+                <h1>
+                    Criar sua conta
+                </h1>
 
                 <p class="auth-subtitulo">
                     Comece a organizar sua rotina.
@@ -146,7 +189,10 @@
                 <form id="formCadastro">
 
                     <div class="campo">
-                        <label for="cadastroNome">Nome</label>
+
+                        <label for="cadastroNome">
+                            Nome
+                        </label>
 
                         <input
                             type="text"
@@ -154,10 +200,15 @@
                             placeholder="Como podemos te chamar?"
                             required
                         >
+
                     </div>
 
+
                     <div class="campo">
-                        <label for="cadastroEmail">E-mail</label>
+
+                        <label for="cadastroEmail">
+                            E-mail
+                        </label>
 
                         <input
                             type="email"
@@ -165,10 +216,15 @@
                             placeholder="Digite seu e-mail"
                             required
                         >
+
                     </div>
 
+
                     <div class="campo">
-                        <label for="cadastroSenha">Senha</label>
+
+                        <label for="cadastroSenha">
+                            Senha
+                        </label>
 
                         <input
                             type="password"
@@ -177,10 +233,15 @@
                             minlength="6"
                             required
                         >
+
                     </div>
 
+
                     <div class="campo">
-                        <label for="confirmarSenha">Confirmar senha</label>
+
+                        <label for="confirmarSenha">
+                            Confirmar senha
+                        </label>
 
                         <input
                             type="password"
@@ -189,20 +250,32 @@
                             minlength="6"
                             required
                         >
+
                     </div>
 
-                    <button type="submit" class="btn-principal">
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
                         Criar conta
                     </button>
 
                 </form>
 
+
                 <p class="troca-auth">
+
                     Já possui uma conta?
 
-                    <button id="btnIrLogin" class="btn-link-inline">
+                    <button
+                        id="btnIrLogin"
+                        class="btn-link-inline"
+                        type="button"
+                    >
                         Entrar
                     </button>
+
                 </p>
 
             </div>
@@ -214,7 +287,10 @@
              DASHBOARD
         =============================== -->
 
-        <section id="telaDashboard" class="tela tela-dashboard escondida">
+        <section
+            id="telaDashboard"
+            class="tela tela-dashboard escondida"
+        >
 
             <div class="dashboard-container">
 
@@ -231,14 +307,19 @@
                         >
 
                         <div>
-                            <strong>ClaudioCK</strong>
+
+                            <strong>
+                                ClaudioCK
+                            </strong>
 
                             <span>
                                 Sua rotina, organizada.
                             </span>
+
                         </div>
 
                     </div>
+
 
                     <button
                         id="btnSair"
@@ -260,7 +341,10 @@
                     </p>
 
                     <h1>
-                        Olá, <span id="nomeUsuario">Claudio</span>!
+                        Olá,
+                        <span id="nomeUsuario">
+                            Claudio
+                        </span>!
                     </h1>
 
                     <p>
@@ -281,6 +365,7 @@
                         </span>
 
                         <div>
+
                             <strong id="totalHabitos">
                                 0
                             </strong>
@@ -288,6 +373,7 @@
                             <span>
                                 Hábitos
                             </span>
+
                         </div>
 
                     </article>
@@ -300,6 +386,7 @@
                         </span>
 
                         <div>
+
                             <strong id="totalCompromissos">
                                 0
                             </strong>
@@ -307,6 +394,7 @@
                             <span>
                                 Compromissos
                             </span>
+
                         </div>
 
                     </article>
@@ -334,6 +422,7 @@
                         </div>
 
                         <div>
+
                             <strong>
                                 Meus hábitos
                             </strong>
@@ -341,6 +430,7 @@
                             <span>
                                 Acompanhe e organize seus hábitos.
                             </span>
+
                         </div>
 
                         <span class="dashboard-seta">
@@ -361,6 +451,7 @@
                         </div>
 
                         <div>
+
                             <strong>
                                 Meus compromissos
                             </strong>
@@ -368,6 +459,7 @@
                             <span>
                                 Organize seus compromissos e horários.
                             </span>
+
                         </div>
 
                         <span class="dashboard-seta">
@@ -393,10 +485,410 @@
 
         </section>
 
+
+        <!-- ==============================
+             TELA DE HÁBITOS
+        =============================== -->
+
+        <section
+            id="telaHabitos"
+            class="tela tela-habitos escondida"
+        >
+
+            <div class="habitos-container">
+
+                <!-- CABEÇALHO -->
+
+                <header class="habitos-header">
+
+                    <button
+                        id="btnVoltarDashboardHabitos"
+                        class="btn-voltar"
+                        type="button"
+                    >
+                        ← Voltar
+                    </button>
+
+
+                    <div>
+
+                        <h1>
+                            Meus hábitos
+                        </h1>
+
+                        <p>
+                            Organize pequenas ações do seu dia.
+                        </p>
+
+                    </div>
+
+                </header>
+
+
+                <!-- CONTEÚDO -->
+
+                <section class="habitos-conteudo">
+
+                    <div class="habitos-topo">
+
+                        <div>
+
+                            <h2>
+                                Seus hábitos
+                            </h2>
+
+                            <p id="mensagemHabitos">
+                                Você ainda não possui hábitos.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            id="btnAdicionarHabito"
+                            class="btn-principal btn-adicionar"
+                            type="button"
+                        >
+                            + Adicionar
+                        </button>
+
+                    </div>
+
+
+                    <!-- FORMULÁRIO DE NOVO HÁBITO -->
+
+                    <div
+                        id="formularioHabito"
+                        class="formulario-habito escondido"
+                    >
+
+                        <h3>
+                            Novo hábito
+                        </h3>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="nomeHabito">
+                                Nome do hábito
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nomeHabito"
+                                placeholder="Ex.: Beber água"
+                            >
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="categoriaHabito">
+                                Categoria
+                            </label>
+
+                            <input
+                                type="text"
+                                id="categoriaHabito"
+                                placeholder="Ex.: Saúde"
+                            >
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="frequenciaHabito">
+                                Frequência
+                            </label>
+
+                            <select id="frequenciaHabito">
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option value="Diário">
+                                    Diário
+                                </option>
+
+                                <option value="Semanal">
+                                    Semanal
+                                </option>
+
+                                <option value="Mensal">
+                                    Mensal
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="horarioHabito">
+                                Horário
+                            </label>
+
+                            <input
+                                type="time"
+                                id="horarioHabito"
+                            >
+
+                        </div>
+
+
+                        <!-- AÇÕES DO FORMULÁRIO -->
+
+                        <div class="acoes-formulario">
+
+                            <button
+                                id="btnCancelarHabito"
+                                class="btn-secundario"
+                                type="button"
+                            >
+                                Cancelar
+                            </button>
+
+
+                            <button
+                                id="btnSalvarHabito"
+                                class="btn-principal"
+                                type="button"
+                            >
+                                Salvar hábito
+                            </button>
+
+                        </div>
+
+
+                        <p
+                            id="mensagemFormularioHabito"
+                            class="mensagem-formulario"
+                        ></p>
+
+                    </div>
+
+
+                    <!-- LISTA DE HÁBITOS -->
+
+                    <div
+                        id="listaHabitos"
+                        class="lista-habitos"
+                    ></div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             TELA DE COMPROMISSOS
+        =============================== -->
+
+        <section
+            id="telaCompromissos"
+            class="tela tela-compromissos escondida"
+        >
+
+            <div class="compromissos-container">
+
+                <!-- CABEÇALHO -->
+
+                <header class="compromissos-header">
+
+                    <button
+                        id="btnVoltarDashboardCompromissos"
+                        class="btn-voltar"
+                        type="button"
+                    >
+                        ← Voltar
+                    </button>
+
+
+                    <div>
+
+                        <h1>
+                            Meus compromissos
+                        </h1>
+
+                        <p>
+                            Organize seus compromissos e horários.
+                        </p>
+
+                    </div>
+
+                </header>
+
+
+                <!-- CONTEÚDO -->
+
+                <section class="compromissos-conteudo">
+
+                    <div class="compromissos-topo">
+
+                        <div>
+
+                            <h2>
+                                Seus compromissos
+                            </h2>
+
+                            <p id="mensagemCompromissos">
+                                Você ainda não possui compromissos.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            id="btnAdicionarCompromisso"
+                            class="btn-principal btn-adicionar"
+                            type="button"
+                        >
+                            + Adicionar
+                        </button>
+
+                    </div>
+
+
+                    <!-- FORMULÁRIO DE COMPROMISSO -->
+
+                    <div
+                        id="formularioCompromisso"
+                        class="formulario-compromisso escondido"
+                    >
+
+                        <h3>
+                            Novo compromisso
+                        </h3>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="tituloCompromisso">
+                                Título
+                            </label>
+
+                            <input
+                                type="text"
+                                id="tituloCompromisso"
+                                placeholder="Ex.: Consulta médica"
+                            >
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="dataCompromisso">
+                                Data
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dataCompromisso"
+                            >
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="horarioCompromisso">
+                                Horário
+                            </label>
+
+                            <input
+                                type="time"
+                                id="horarioCompromisso"
+                            >
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="localCompromisso">
+                                Local
+                            </label>
+
+                            <input
+                                type="text"
+                                id="localCompromisso"
+                                placeholder="Ex.: Centro Médico"
+                            >
+
+                        </div>
+
+
+                        <div class="campo-formulario">
+
+                            <label for="descricaoCompromisso">
+                                Descrição
+                            </label>
+
+                            <textarea
+                                id="descricaoCompromisso"
+                                placeholder="Adicione detalhes sobre o compromisso"
+                                rows="4"
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- AÇÕES DO FORMULÁRIO -->
+
+                        <div class="acoes-formulario">
+
+                            <button
+                                id="btnCancelarCompromisso"
+                                class="btn-secundario"
+                                type="button"
+                            >
+                                Cancelar
+                            </button>
+
+
+                            <button
+                                id="btnSalvarCompromisso"
+                                class="btn-principal"
+                                type="button"
+                            >
+                                Salvar compromisso
+                            </button>
+
+                        </div>
+
+
+                        <p
+                            id="mensagemFormularioCompromisso"
+                            class="mensagem-formulario"
+                        ></p>
+
+                    </div>
+
+
+                    <!-- LISTA DE COMPROMISSOS -->
+
+                    <div
+                        id="listaCompromissos"
+                        class="lista-compromissos"
+                    ></div>
+
+                </section>
+
+            </div>
+
+        </section>
+
     </main>
 
 
-<script src="script.js?v=10"></script>
+    <script src="script.js?v=10"></script>
 
 </body>
 

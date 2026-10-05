@@ -1,8 +1,10 @@
 import pool from "../config/database.js";
 
-// ========================================
-// LISTAR COMPROMISSOS
-// ========================================
+const estadosValidos = [
+    "pendente",
+    "concluido",
+    "nao_concluido"
+];
 
 export const listarCompromissos = async (req, res) => {
     try {
@@ -27,10 +29,6 @@ export const listarCompromissos = async (req, res) => {
     }
 };
 
-
-// ========================================
-// CRIAR COMPROMISSO
-// ========================================
 
 export const criarCompromisso = async (req, res) => {
     try {
@@ -80,10 +78,6 @@ export const criarCompromisso = async (req, res) => {
 };
 
 
-// ========================================
-// ATUALIZAR COMPROMISSO
-// ========================================
-
 export const atualizarCompromisso = async (req, res) => {
     try {
         const usuarioId = req.usuario.id;
@@ -104,6 +98,12 @@ export const atualizarCompromisso = async (req, res) => {
             });
         }
 
+        if (!estadosValidos.includes(concluido)) {
+            return res.status(400).json({
+                mensagem: "Estado do compromisso inválido."
+            });
+        }
+
         const resultado = await pool.query(
             `UPDATE compromissos
              SET titulo = $1,
@@ -121,7 +121,7 @@ export const atualizarCompromisso = async (req, res) => {
                 horario || null,
                 local || null,
                 descricao || null,
-                concluido ?? false,
+                concluido,
                 id,
                 usuarioId
             ]
@@ -148,10 +148,6 @@ export const atualizarCompromisso = async (req, res) => {
 };
 
 
-// ========================================
-// EXCLUIR COMPROMISSO
-// ========================================
-
 export const excluirCompromisso = async (req, res) => {
     try {
         const usuarioId = req.usuario.id;
@@ -167,7 +163,7 @@ export const excluirCompromisso = async (req, res) => {
 
         if (resultado.rows.length === 0) {
             return res.status(404).json({
-                mensagem: "Compromisso não encontrado."
+                mensagem: "Não foi possível excluir o compromisso."
             });
         }
 
@@ -179,7 +175,7 @@ export const excluirCompromisso = async (req, res) => {
         console.error(erro);
 
         res.status(500).json({
-            mensagem: "Erro ao excluir compromisso."
+            mensagem: "Não foi possível excluir o compromisso."
         });
     }
 };

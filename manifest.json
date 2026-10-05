@@ -1,0 +1,11 @@
+{
+    "name": "ClaudioCK",
+    "short_name": "ClaudioCK",
+    "description": "Organize seu dia. Construa sua rotina.",
+    "start_url": "./index.html",
+    "id": "./index.html",
+    "display": "standalone",
+    "background_color": "#F8F7F2",
+    "theme_color": "#2E9B6F",
+    "orientation": "portrait"
+}
