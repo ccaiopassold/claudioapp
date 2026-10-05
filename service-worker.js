@@ -1,5 +1,4 @@
-const CACHE_NAME = "claudiock-v2";
-
+const CACHE_NAME = "claudiock-v3";
 const ARQUIVOS = [
     "./",
     "./index.html",
