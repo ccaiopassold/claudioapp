@@ -237,8 +237,8 @@ formCadastro.addEventListener("submit", async (event) => {
 
     try {
 
-        const resposta = await fetch(
-            "http://localhost:3001/api/auth/cadastro",
+       const resposta = await fetch(
+    "https://claudiock-api.onrender.com/api/auth/cadastro",
             {
                 method: "POST",
 
@@ -306,7 +306,7 @@ formLogin.addEventListener("submit", async (event) => {
     try {
 
         const resposta = await fetch(
-            "http://localhost:3001/api/auth/login",
+            "https://claudiock-api.onrender.com/api/auth/login",
             {
                 method: "POST",
 
@@ -443,7 +443,7 @@ async function carregarHabitos() {
     try {
 
         const resposta = await fetch(
-            "http://localhost:3001/api/habitos",
+            "https://claudiock-api.onrender.com/api/habitos",
             {
                 method: "GET",
 
@@ -730,7 +730,7 @@ async function excluirHabito(id) {
     try {
 
         const resposta = await fetch(
-            `http://localhost:3001/api/habitos/${id}`,
+            `https://claudiock-api.onrender.com/api/habitos/${id}`,
             {
                 method: "DELETE",
 
@@ -867,7 +867,7 @@ btnSalvarHabito.addEventListener("click", async () => {
 
 
             const resposta = await fetch(
-                `http://localhost:3001/api/habitos/${habitoEditandoId}`,
+                `https://claudiock-api.onrender.com/api/habitos/${habitoEditandoId}`,
                 {
                     method: "PUT",
 
@@ -913,7 +913,7 @@ btnSalvarHabito.addEventListener("click", async () => {
 
 
             const resposta = await fetch(
-                "http://localhost:3001/api/habitos",
+                "https://claudiock-api.onrender.com/api/habitos",
                 {
                     method: "POST",
 
@@ -1067,7 +1067,7 @@ async function carregarCompromissos() {
     try {
 
         const resposta = await fetch(
-            "http://localhost:3001/api/compromissos",
+            "https://claudiock-api.onrender.com/api/compromissos",
             {
                 method: "GET",
 
@@ -1476,7 +1476,7 @@ async function alterarEstadoCompromisso(id, novoEstado) {
 
         // Busca o compromisso atual
         const respostaBusca = await fetch(
-            "http://localhost:3001/api/compromissos",
+            "https://claudiock-api.onrender.com/api/compromissos",
             {
                 method: "GET",
 
@@ -1521,7 +1521,7 @@ async function alterarEstadoCompromisso(id, novoEstado) {
 
 
         const resposta = await fetch(
-            `http://localhost:3001/api/compromissos/${id}`,
+            `https://claudiock-api.onrender.com/api/compromissos/${id}`,
             {
                 method: "PUT",
 
@@ -1790,7 +1790,7 @@ async function excluirCompromisso(id) {
     try {
 
         const resposta = await fetch(
-            `http://localhost:3001/api/compromissos/${id}`,
+            `https://claudiock-api.onrender.com/api/compromissos/${id}`,
             {
                 method: "DELETE",
 
@@ -1919,7 +1919,7 @@ btnSalvarCompromisso.addEventListener(
 
 
                 const resposta = await fetch(
-                    `http://localhost:3001/api/compromissos/${compromissoEditandoId}`,
+                    `https://claudiock-api.onrender.com/api/compromissos/${compromissoEditandoId}`,
                     {
                         method: "PUT",
 
@@ -1984,7 +1984,7 @@ btnSalvarCompromisso.addEventListener(
 
 
                 const resposta = await fetch(
-                    "http://localhost:3001/api/compromissos",
+                    "https://claudiock-api.onrender.com/api/compromissos",
                     {
                         method: "POST",
 
@@ -2136,7 +2136,7 @@ async function carregarResumo() {
 
         const respostaHabitos =
             await fetch(
-                "http://localhost:3001/api/habitos",
+                "https://claudiock-api.onrender.com/api/habitos",
                 {
                     headers: {
                         "Authorization":
@@ -2165,7 +2165,7 @@ async function carregarResumo() {
 
         const respostaCompromissos =
             await fetch(
-                "http://localhost:3001/api/compromissos",
+                "https://claudiock-api.onrender.com/api/compromissos",
                 {
                     headers: {
                         "Authorization":
