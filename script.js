@@ -11,10 +11,279 @@ const telaCompromissos = document.getElementById("telaCompromissos");
 
 
 // ========================================
+// NOTIFICAÇÕES E CONFIRMAÇÕES PERSONALIZADAS
+// ========================================
+
+function mostrarNotificacao(mensagem, tipo = "sucesso") {
+
+    let container =
+        document.getElementById("notificacoesClaudio");
+
+    if (!container) {
+
+        container = document.createElement("div");
+
+        container.id =
+            "notificacoesClaudio";
+
+        container.className =
+            "notificacoes-claudio";
+
+        document.body.appendChild(container);
+    }
+
+
+    const notificacao =
+        document.createElement("div");
+
+    notificacao.className =
+        `notificacao-claudio notificacao-${tipo}`;
+
+
+    const icones = {
+        sucesso: "✓",
+        erro: "!",
+        aviso: "!",
+        info: "i"
+    };
+
+
+    notificacao.innerHTML = `
+        <span class="notificacao-icone">
+            ${icones[tipo] || "i"}
+        </span>
+
+        <span class="notificacao-texto"></span>
+
+        <button
+            type="button"
+            class="notificacao-fechar"
+            aria-label="Fechar"
+        >
+            ×
+        </button>
+    `;
+
+
+    notificacao
+        .querySelector(".notificacao-texto")
+        .textContent = mensagem;
+
+
+    container.appendChild(notificacao);
+
+
+    const remover = () => {
+
+        notificacao.classList.add("saindo");
+
+        setTimeout(
+            () => notificacao.remove(),
+            220
+        );
+    };
+
+
+    notificacao
+        .querySelector(".notificacao-fechar")
+        .addEventListener(
+            "click",
+            remover
+        );
+
+
+    setTimeout(
+        remover,
+        tipo === "erro" ? 4500 : 3000
+    );
+}
+
+
+function mostrarConfirmacao(
+    mensagem,
+    titulo = "Confirmar ação"
+) {
+
+    return new Promise((resolve) => {
+
+        let overlay =
+            document.getElementById(
+                "modalConfirmacaoClaudio"
+            );
+
+
+        if (!overlay) {
+
+            overlay =
+                document.createElement("div");
+
+            overlay.id =
+                "modalConfirmacaoClaudio";
+
+            overlay.className =
+                "modal-confirmacao-claudio";
+
+
+            overlay.innerHTML = `
+                <div
+                    class="modal-confirmacao-conteudo"
+                    role="dialog"
+                    aria-modal="true"
+                >
+
+                    <div class="modal-confirmacao-icone">
+                        ?
+                    </div>
+
+                    <h3 class="modal-confirmacao-titulo"></h3>
+
+                    <p class="modal-confirmacao-mensagem"></p>
+
+                    <div class="modal-confirmacao-acoes">
+
+                        <button
+                            type="button"
+                            class="modal-btn-cancelar"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="button"
+                            class="modal-btn-confirmar"
+                        >
+                            Confirmar
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            document.body.appendChild(overlay);
+        }
+
+
+        overlay
+            .querySelector(
+                ".modal-confirmacao-titulo"
+            )
+            .textContent = titulo;
+
+
+        overlay
+            .querySelector(
+                ".modal-confirmacao-mensagem"
+            )
+            .textContent = mensagem;
+
+
+        const btnCancelar =
+            overlay.querySelector(
+                ".modal-btn-cancelar"
+            );
+
+
+        const btnConfirmar =
+            overlay.querySelector(
+                ".modal-btn-confirmar"
+            );
+
+
+        overlay.classList.add("ativo");
+
+
+        const fechar = (resultado) => {
+
+            overlay.classList.remove("ativo");
+
+            btnCancelar.removeEventListener(
+                "click",
+                cancelar
+            );
+
+            btnConfirmar.removeEventListener(
+                "click",
+                confirmar
+            );
+
+            overlay.removeEventListener(
+                "click",
+                clicarFora
+            );
+
+            document.removeEventListener(
+                "keydown",
+                teclaEscape
+            );
+
+            resolve(resultado);
+        };
+
+
+        const cancelar = () =>
+            fechar(false);
+
+
+        const confirmar = () =>
+            fechar(true);
+
+
+        const clicarFora = (event) => {
+
+            if (event.target === overlay) {
+
+                cancelar();
+            }
+        };
+
+
+        const teclaEscape = (event) => {
+
+            if (event.key === "Escape") {
+
+                cancelar();
+            }
+        };
+
+
+        btnCancelar.addEventListener(
+            "click",
+            cancelar
+        );
+
+
+        btnConfirmar.addEventListener(
+            "click",
+            confirmar
+        );
+
+
+        overlay.addEventListener(
+            "click",
+            clicarFora
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            teclaEscape
+        );
+
+
+        btnConfirmar.focus();
+
+    });
+}
+
+
+// ========================================
 // BOTÕES
 // ========================================
 
-const btnComecar = document.getElementById("btnComecar");
+const btnComecar =
+    document.getElementById("btnComecar");
 
 const btnVoltarLogin =
     document.getElementById("btnVoltarLogin");
@@ -35,10 +304,14 @@ const btnHabitos =
     document.getElementById("btnHabitos");
 
 const btnVoltarDashboardHabitos =
-    document.getElementById("btnVoltarDashboardHabitos");
+    document.getElementById(
+        "btnVoltarDashboardHabitos"
+    );
 
 const btnAdicionarHabito =
-    document.getElementById("btnAdicionarHabito");
+    document.getElementById(
+        "btnAdicionarHabito"
+    );
 
 
 // ========================================
@@ -46,13 +319,19 @@ const btnAdicionarHabito =
 // ========================================
 
 const btnCompromissos =
-    document.getElementById("btnCompromissos");
+    document.getElementById(
+        "btnCompromissos"
+    );
 
 const btnVoltarDashboardCompromissos =
-    document.getElementById("btnVoltarDashboardCompromissos");
+    document.getElementById(
+        "btnVoltarDashboardCompromissos"
+    );
 
 const btnAdicionarCompromisso =
-    document.getElementById("btnAdicionarCompromisso");
+    document.getElementById(
+        "btnAdicionarCompromisso"
+    );
 
 
 // ========================================
@@ -60,28 +339,44 @@ const btnAdicionarCompromisso =
 // ========================================
 
 const formularioHabito =
-    document.getElementById("formularioHabito");
+    document.getElementById(
+        "formularioHabito"
+    );
 
 const btnCancelarHabito =
-    document.getElementById("btnCancelarHabito");
+    document.getElementById(
+        "btnCancelarHabito"
+    );
 
 const btnSalvarHabito =
-    document.getElementById("btnSalvarHabito");
+    document.getElementById(
+        "btnSalvarHabito"
+    );
 
 const nomeHabito =
-    document.getElementById("nomeHabito");
+    document.getElementById(
+        "nomeHabito"
+    );
 
 const categoriaHabito =
-    document.getElementById("categoriaHabito");
+    document.getElementById(
+        "categoriaHabito"
+    );
 
 const frequenciaHabito =
-    document.getElementById("frequenciaHabito");
+    document.getElementById(
+        "frequenciaHabito"
+    );
 
 const horarioHabito =
-    document.getElementById("horarioHabito");
+    document.getElementById(
+        "horarioHabito"
+    );
 
 const mensagemFormularioHabito =
-    document.getElementById("mensagemFormularioHabito");
+    document.getElementById(
+        "mensagemFormularioHabito"
+    );
 
 
 // ========================================
@@ -89,31 +384,49 @@ const mensagemFormularioHabito =
 // ========================================
 
 const formularioCompromisso =
-    document.getElementById("formularioCompromisso");
+    document.getElementById(
+        "formularioCompromisso"
+    );
 
 const btnCancelarCompromisso =
-    document.getElementById("btnCancelarCompromisso");
+    document.getElementById(
+        "btnCancelarCompromisso"
+    );
 
 const btnSalvarCompromisso =
-    document.getElementById("btnSalvarCompromisso");
+    document.getElementById(
+        "btnSalvarCompromisso"
+    );
 
 const tituloCompromisso =
-    document.getElementById("tituloCompromisso");
+    document.getElementById(
+        "tituloCompromisso"
+    );
 
 const dataCompromisso =
-    document.getElementById("dataCompromisso");
+    document.getElementById(
+        "dataCompromisso"
+    );
 
 const horarioCompromisso =
-    document.getElementById("horarioCompromisso");
+    document.getElementById(
+        "horarioCompromisso"
+    );
 
 const localCompromisso =
-    document.getElementById("localCompromisso");
+    document.getElementById(
+        "localCompromisso"
+    );
 
 const descricaoCompromisso =
-    document.getElementById("descricaoCompromisso");
+    document.getElementById(
+        "descricaoCompromisso"
+    );
 
 const mensagemFormularioCompromisso =
-    document.getElementById("mensagemFormularioCompromisso");
+    document.getElementById(
+        "mensagemFormularioCompromisso"
+    );
 
 
 // ========================================
@@ -124,11 +437,8 @@ let habitoEditandoId = null;
 
 let compromissoEditandoId = null;
 
-// Agora guarda o estado:
-// "pendente"
-// "concluido"
-// "nao_concluido"
-let compromissoEditandoEstado = "pendente";
+let compromissoEditandoEstado =
+    "pendente";
 
 
 // ========================================
@@ -137,14 +447,33 @@ let compromissoEditandoEstado = "pendente";
 
 function mostrarTela(tela) {
 
-    telaSplash.classList.add("escondida");
-    telaLogin.classList.add("escondida");
-    telaCadastro.classList.add("escondida");
-    telaDashboard.classList.add("escondida");
-    telaHabitos.classList.add("escondida");
-    telaCompromissos.classList.add("escondida");
+    telaSplash.classList.add(
+        "escondida"
+    );
 
-    tela.classList.remove("escondida");
+    telaLogin.classList.add(
+        "escondida"
+    );
+
+    telaCadastro.classList.add(
+        "escondida"
+    );
+
+    telaDashboard.classList.add(
+        "escondida"
+    );
+
+    telaHabitos.classList.add(
+        "escondida"
+    );
+
+    telaCompromissos.classList.add(
+        "escondida"
+    );
+
+    tela.classList.remove(
+        "escondida"
+    );
 }
 
 
@@ -152,55 +481,70 @@ function mostrarTela(tela) {
 // SPLASH → LOGIN
 // ========================================
 
-btnComecar.addEventListener("click", () => {
+btnComecar.addEventListener(
+    "click",
+    () => {
 
-    mostrarTela(telaLogin);
+        mostrarTela(telaLogin);
 
-});
+    }
+);
 
 
 // ========================================
 // LOGIN → CADASTRO
 // ========================================
 
-btnIrCadastro.addEventListener("click", () => {
+btnIrCadastro.addEventListener(
+    "click",
+    () => {
 
-    mostrarTela(telaCadastro);
+        mostrarTela(telaCadastro);
 
-});
+    }
+);
 
 
 // ========================================
 // CADASTRO → LOGIN
 // ========================================
 
-btnIrLogin.addEventListener("click", () => {
+btnIrLogin.addEventListener(
+    "click",
+    () => {
 
-    mostrarTela(telaLogin);
+        mostrarTela(telaLogin);
 
-});
+    }
+);
 
 
 // ========================================
 // LOGIN → SPLASH
 // ========================================
 
-btnVoltarLogin.addEventListener("click", () => {
+btnVoltarLogin.addEventListener(
+    "click",
+    () => {
 
-    mostrarTela(telaSplash);
+        mostrarTela(telaSplash);
 
-});
+    }
+);
 
 
 // ========================================
 // CADASTRO → SPLASH
 // ========================================
 
-btnVoltarCadastro.addEventListener("click", () => {
+btnVoltarCadastro.addEventListener(
+    "click",
+    () => {
 
-    mostrarTela(telaSplash);
+        mostrarTela(telaSplash);
 
-});
+    }
+);
 
 
 // ========================================
@@ -208,81 +552,113 @@ btnVoltarCadastro.addEventListener("click", () => {
 // ========================================
 
 const formCadastro =
-    document.getElementById("formCadastro");
-
-formCadastro.addEventListener("submit", async (event) => {
-
-    event.preventDefault();
-
-    const nome =
-        document.getElementById("cadastroNome").value;
-
-    const email =
-        document.getElementById("cadastroEmail").value;
-
-    const senha =
-        document.getElementById("cadastroSenha").value;
-
-    const confirmarSenha =
-        document.getElementById("confirmarSenha").value;
+    document.getElementById(
+        "formCadastro"
+    );
 
 
-    if (senha !== confirmarSenha) {
+formCadastro.addEventListener(
+    "submit",
+    async (event) => {
 
-        alert("As senhas não coincidem.");
-
-        return;
-    }
-
-
-    try {
-
-       const resposta = await fetch(
-    "https://claudiock-api.onrender.com/api/auth/cadastro",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    nome,
-                    email,
-                    senha
-                })
-            }
-        );
+        event.preventDefault();
 
 
-        const dados =
-            await resposta.json();
+        const nome =
+            document.getElementById(
+                "cadastroNome"
+            ).value;
 
 
-        if (!resposta.ok) {
+        const email =
+            document.getElementById(
+                "cadastroEmail"
+            ).value;
 
-            alert(dados.mensagem);
+
+        const senha =
+            document.getElementById(
+                "cadastroSenha"
+            ).value;
+
+
+        const confirmarSenha =
+            document.getElementById(
+                "confirmarSenha"
+            ).value;
+
+
+        if (senha !== confirmarSenha) {
+
+            mostrarNotificacao(
+                "As senhas não coincidem.",
+                "aviso"
+            );
 
             return;
         }
 
 
-        alert("Conta criada com sucesso!");
+        try {
 
-        formCadastro.reset();
+            const resposta =
+                await fetch(
+                    "https://claudiock-api.onrender.com/api/auth/cadastro",
+                    {
+                        method: "POST",
 
-        mostrarTela(telaLogin);
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            nome,
+                            email,
+                            senha
+                        })
+                    }
+                );
 
 
-    } catch (erro) {
+            const dados =
+                await resposta.json();
 
-        console.error(erro);
 
-        alert(
-            "Não foi possível conectar ao servidor."
-        );
+            if (!resposta.ok) {
+
+                mostrarNotificacao(
+                    dados.mensagem ||
+                    "Não foi possível criar a conta.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            mostrarNotificacao(
+                "Conta criada com sucesso!",
+                "sucesso"
+            );
+
+
+            formCadastro.reset();
+
+            mostrarTela(telaLogin);
+
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            mostrarNotificacao(
+                "Não foi possível conectar ao servidor.",
+                "erro"
+            );
+        }
     }
-});
+);
 
 
 // ========================================
@@ -290,130 +666,177 @@ formCadastro.addEventListener("submit", async (event) => {
 // ========================================
 
 const formLogin =
-    document.getElementById("formLogin");
-
-formLogin.addEventListener("submit", async (event) => {
-
-    event.preventDefault();
-
-    const email =
-        document.getElementById("loginEmail").value;
-
-    const senha =
-        document.getElementById("loginSenha").value;
+    document.getElementById(
+        "formLogin"
+    );
 
 
-    try {
+formLogin.addEventListener(
+    "submit",
+    async (event) => {
 
-        const resposta = await fetch(
-            "https://claudiock-api.onrender.com/api/auth/login",
-            {
-                method: "POST",
+        event.preventDefault();
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
 
-                body: JSON.stringify({
-                    email,
-                    senha
-                })
+        const email =
+            document.getElementById(
+                "loginEmail"
+            ).value;
+
+
+        const senha =
+            document.getElementById(
+                "loginSenha"
+            ).value;
+
+
+        try {
+
+            const resposta =
+                await fetch(
+                    "https://claudiock-api.onrender.com/api/auth/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email,
+                            senha
+                        })
+                    }
+                );
+
+
+            const dados =
+                await resposta.json();
+
+
+            if (!resposta.ok) {
+
+                mostrarNotificacao(
+                    dados.mensagem ||
+                    "Não foi possível realizar o login.",
+                    "erro"
+                );
+
+                return;
             }
-        );
 
 
-        const dados =
-            await resposta.json();
+            localStorage.setItem(
+                "token",
+                dados.token
+            );
 
 
-        if (!resposta.ok) {
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(
+                    dados.usuario
+                )
+            );
 
-            alert(dados.mensagem);
 
-            return;
+            document.getElementById(
+                "nomeUsuario"
+            ).textContent =
+                dados.usuario.nome;
+
+
+            mostrarNotificacao(
+                `Bem-vindo, ${dados.usuario.nome}!`,
+                "sucesso"
+            );
+
+
+            mostrarTela(
+                telaDashboard
+            );
+
+
+            formLogin.reset();
+
+            carregarResumo();
+
+
+        } catch (erro) {
+
+            console.error(
+                "Erro no login:",
+                erro
+            );
+
+            mostrarNotificacao(
+                "Não foi possível conectar ao servidor.",
+                "erro"
+            );
         }
-
-
-        localStorage.setItem(
-            "token",
-            dados.token
-        );
-
-
-        localStorage.setItem(
-            "usuario",
-            JSON.stringify(dados.usuario)
-        );
-
-
-        document.getElementById("nomeUsuario").textContent =
-            dados.usuario.nome;
-
-
-        alert(
-            `Bem-vindo, ${dados.usuario.nome}!`
-        );
-
-
-        mostrarTela(telaDashboard);
-
-        formLogin.reset();
-
-        carregarResumo();
-
-
-    } catch (erro) {
-
-        console.error(
-            "Erro no login:",
-            erro
-        );
-
-        alert(
-            "Não foi possível conectar ao servidor."
-        );
     }
-});
+);
 
 
 // ========================================
 // LOGOUT
 // ========================================
 
-btnSair.addEventListener("click", () => {
+btnSair.addEventListener(
+    "click",
+    () => {
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("usuario");
+        localStorage.removeItem(
+            "token"
+        );
 
-    mostrarTela(telaSplash);
+        localStorage.removeItem(
+            "usuario"
+        );
 
-});
+        mostrarTela(
+            telaSplash
+        );
+
+    }
+);
 
 
 // ========================================
 // DASHBOARD → HÁBITOS
 // ========================================
 
-btnHabitos.addEventListener("click", async () => {
+btnHabitos.addEventListener(
+    "click",
+    async () => {
 
-    mostrarTela(telaHabitos);
+        mostrarTela(
+            telaHabitos
+        );
 
-    await carregarHabitos();
+        await carregarHabitos();
 
-});
+    }
+);
 
 
 // ========================================
 // HÁBITOS → DASHBOARD
 // ========================================
 
-btnVoltarDashboardHabitos.addEventListener("click", () => {
+btnVoltarDashboardHabitos.addEventListener(
+    "click",
+    () => {
 
-    mostrarTela(telaDashboard);
+        mostrarTela(
+            telaDashboard
+        );
 
-    carregarResumo();
+        carregarResumo();
 
-});
+    }
+);
 
 
 // ========================================
@@ -423,18 +846,28 @@ btnVoltarDashboardHabitos.addEventListener("click", () => {
 async function carregarHabitos() {
 
     const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+            "token"
+        );
+
 
     const listaHabitos =
-        document.getElementById("listaHabitos");
+        document.getElementById(
+            "listaHabitos"
+        );
+
 
     const mensagemHabitos =
-        document.getElementById("mensagemHabitos");
+        document.getElementById(
+            "mensagemHabitos"
+        );
 
 
     if (!token) {
 
-        mostrarTela(telaLogin);
+        mostrarTela(
+            telaLogin
+        );
 
         return;
     }
@@ -442,16 +875,18 @@ async function carregarHabitos() {
 
     try {
 
-        const resposta = await fetch(
-            "https://claudiock-api.onrender.com/api/habitos",
-            {
-                method: "GET",
+        const resposta =
+            await fetch(
+                "https://claudiock-api.onrender.com/api/habitos",
+                {
+                    method: "GET",
 
-                headers: {
-                    "Authorization": `Bearer ${token}`
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
 
         const dados =
@@ -460,22 +895,25 @@ async function carregarHabitos() {
 
         if (!resposta.ok) {
 
-            alert(
+            mostrarNotificacao(
                 dados.mensagem ||
-                "Não foi possível carregar os hábitos."
+                "Não foi possível carregar os hábitos.",
+                "erro"
             );
 
             return;
         }
 
 
-        listaHabitos.innerHTML = "";
+        listaHabitos.innerHTML =
+            "";
 
 
         if (dados.length === 0) {
 
             mensagemHabitos.textContent =
                 "Você ainda não possui hábitos.";
+
 
             listaHabitos.innerHTML = `
                 <div class="habito-vazio">
@@ -493,119 +931,145 @@ async function carregarHabitos() {
             `${dados.length} hábito(s) cadastrado(s).`;
 
 
-        dados.forEach((habito) => {
+        dados.forEach(
+            (habito) => {
 
-            const item =
-                document.createElement("article");
-
-            item.className = "habito-item";
-
-
-            const horario =
-                habito.horario
-                    ? `Horário: ${habito.horario.slice(0, 5)}`
-                    : "Sem horário";
+                const item =
+                    document.createElement(
+                        "article"
+                    );
 
 
-            const categoria =
-                habito.categoria ||
-                "Sem categoria";
+                item.className =
+                    "habito-item";
 
 
-            const frequencia =
-                habito.frequencia ||
-                "Sem frequência";
+                const horario =
+                    habito.horario
+                        ? `Horário: ${habito.horario.slice(0, 5)}`
+                        : "Sem horário";
 
 
-            item.innerHTML = `
-                <div class="habito-icone">
-                    ✓
-                </div>
-
-                <div class="habito-info">
-
-                    <strong>
-                        ${habito.nome}
-                    </strong>
-
-                    <p>
-                        ${categoria} · ${frequencia}
-                    </p>
-
-                    <p>
-                        ${horario}
-                    </p>
-
-                </div>
-
-                <div class="habito-acoes">
-
-                    <button
-                        class="habito-acao editar"
-                        type="button"
-                        data-id="${habito.id}"
-                        title="Editar hábito"
-                    >
-                        Editar
-                    </button>
-
-                    <button
-                        class="habito-acao excluir"
-                        type="button"
-                        data-id="${habito.id}"
-                        title="Excluir hábito"
-                    >
-                        ×
-                    </button>
-
-                </div>
-            `;
+                const categoria =
+                    habito.categoria ||
+                    "Sem categoria";
 
 
-            listaHabitos.appendChild(item);
+                const frequencia =
+                    habito.frequencia ||
+                    "Sem frequência";
 
-        });
+
+                item.innerHTML = `
+                    <div class="habito-icone">
+                        ✓
+                    </div>
+
+                    <div class="habito-info">
+
+                        <strong>
+                            ${habito.nome}
+                        </strong>
+
+                        <p>
+                            ${categoria} · ${frequencia}
+                        </p>
+
+                        <p>
+                            ${horario}
+                        </p>
+
+                    </div>
+
+                    <div class="habito-acoes">
+
+                        <button
+                            class="habito-acao editar"
+                            type="button"
+                            data-id="${habito.id}"
+                            title="Editar hábito"
+                        >
+                            Editar
+                        </button>
+
+                        <button
+                            class="habito-acao excluir"
+                            type="button"
+                            data-id="${habito.id}"
+                            title="Excluir hábito"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+                `;
+
+
+                listaHabitos.appendChild(
+                    item
+                );
+
+            }
+        );
 
 
         document
-            .querySelectorAll(".habito-acao.editar")
-            .forEach((botao) => {
+            .querySelectorAll(
+                ".habito-acao.editar"
+            )
+            .forEach(
+                (botao) => {
 
-                botao.addEventListener(
-                    "click",
-                    () => {
+                    botao.addEventListener(
+                        "click",
+                        () => {
 
-                        const id =
-                            botao.dataset.id;
+                            const id =
+                                botao.dataset.id;
 
-                        const habito =
-                            dados.find(
-                                (item) =>
-                                    String(item.id) === String(id)
-                            );
 
-                        if (habito) {
+                            const habito =
+                                dados.find(
+                                    (item) =>
+                                        String(
+                                            item.id
+                                        ) ===
+                                        String(id)
+                                );
 
-                            editarHabito(habito);
+
+                            if (habito) {
+
+                                editarHabito(
+                                    habito
+                                );
+
+                            }
 
                         }
+                    );
 
-                    }
-                );
-
-            });
+                }
+            );
 
 
         document
-            .querySelectorAll(".habito-acao.excluir")
-            .forEach((botao) => {
+            .querySelectorAll(
+                ".habito-acao.excluir"
+            )
+            .forEach(
+                (botao) => {
 
-                botao.addEventListener(
-                    "click",
-                    () => excluirHabito(botao.dataset.id)
-                );
+                    botao.addEventListener(
+                        "click",
+                        () =>
+                            excluirHabito(
+                                botao.dataset.id
+                            )
+                    );
 
-            });
+                }
+            );
 
 
     } catch (erro) {
@@ -615,8 +1079,9 @@ async function carregarHabitos() {
             erro
         );
 
-        alert(
-            "Não foi possível conectar ao servidor."
+        mostrarNotificacao(
+            "Não foi possível conectar ao servidor.",
+            "erro"
         );
     }
 }
@@ -626,22 +1091,35 @@ async function carregarHabitos() {
 // EDITAR HÁBITO
 // ========================================
 
-function editarHabito(habito) {
+function editarHabito(
+    habito
+) {
 
-    habitoEditandoId = habito.id;
+    habitoEditandoId =
+        habito.id;
+
 
     nomeHabito.value =
-        habito.nome || "";
+        habito.nome ||
+        "";
+
 
     categoriaHabito.value =
-        habito.categoria || "";
+        habito.categoria ||
+        "";
+
 
     frequenciaHabito.value =
-        habito.frequencia || "";
+        habito.frequencia ||
+        "";
+
 
     horarioHabito.value =
         habito.horario
-            ? habito.horario.slice(0, 5)
+            ? habito.horario.slice(
+                0,
+                5
+            )
             : "";
 
 
@@ -651,7 +1129,9 @@ function editarHabito(habito) {
 
 
     const tituloFormulario =
-        formularioHabito.querySelector("h3");
+        formularioHabito.querySelector(
+            "h3"
+        );
 
 
     if (tituloFormulario) {
@@ -664,10 +1144,12 @@ function editarHabito(habito) {
     btnSalvarHabito.textContent =
         "Atualizar hábito";
 
-    mensagemFormularioHabito.textContent = "";
+
+    mensagemFormularioHabito.textContent =
+        "";
+
 
     nomeHabito.focus();
-
 }
 
 
@@ -675,45 +1157,68 @@ function editarHabito(habito) {
 // CANCELAR HÁBITO
 // ========================================
 
-btnCancelarHabito.addEventListener("click", () => {
+btnCancelarHabito.addEventListener(
+    "click",
+    () => {
 
-    formularioHabito.classList.add(
-        "escondido"
-    );
+        formularioHabito.classList.add(
+            "escondido"
+        );
 
-    habitoEditandoId = null;
 
-    nomeHabito.value = "";
-    categoriaHabito.value = "";
-    frequenciaHabito.value = "";
-    horarioHabito.value = "";
+        habitoEditandoId =
+            null;
 
-    mensagemFormularioHabito.textContent = "";
 
-    const tituloFormulario =
-        formularioHabito.querySelector("h3");
+        nomeHabito.value =
+            "";
 
-    if (tituloFormulario) {
+        categoriaHabito.value =
+            "";
 
-        tituloFormulario.textContent =
-            "Novo hábito";
+        frequenciaHabito.value =
+            "";
+
+        horarioHabito.value =
+            "";
+
+
+        mensagemFormularioHabito.textContent =
+            "";
+
+
+        const tituloFormulario =
+            formularioHabito.querySelector(
+                "h3"
+            );
+
+
+        if (tituloFormulario) {
+
+            tituloFormulario.textContent =
+                "Novo hábito";
+        }
+
+
+        btnSalvarHabito.textContent =
+            "Salvar hábito";
+
     }
-
-    btnSalvarHabito.textContent =
-        "Salvar hábito";
-
-});
+);
 
 
 // ========================================
 // EXCLUIR HÁBITO
 // ========================================
 
-async function excluirHabito(id) {
+async function excluirHabito(
+    id
+) {
 
     const confirmar =
-        confirm(
-            "Deseja realmente excluir este hábito?"
+        await mostrarConfirmacao(
+            "Deseja realmente excluir este hábito?",
+            "Excluir hábito"
         );
 
 
@@ -724,21 +1229,25 @@ async function excluirHabito(id) {
 
 
     const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+            "token"
+        );
 
 
     try {
 
-        const resposta = await fetch(
-            `https://claudiock-api.onrender.com/api/habitos/${id}`,
-            {
-                method: "DELETE",
+        const resposta =
+            await fetch(
+                `https://claudiock-api.onrender.com/api/habitos/${id}`,
+                {
+                    method: "DELETE",
 
-                headers: {
-                    "Authorization": `Bearer ${token}`
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
 
         const dados =
@@ -747,16 +1256,21 @@ async function excluirHabito(id) {
 
         if (!resposta.ok) {
 
-            alert(
+            mostrarNotificacao(
                 dados.mensagem ||
-                "Não foi possível excluir o hábito."
+                "Não foi possível excluir o hábito.",
+                "erro"
             );
 
             return;
         }
 
 
-        alert("Hábito excluído com sucesso!");
+        mostrarNotificacao(
+            "Hábito excluído com sucesso!",
+            "sucesso"
+        );
+
 
         await carregarHabitos();
 
@@ -768,8 +1282,9 @@ async function excluirHabito(id) {
             erro
         );
 
-        alert(
-            "Não foi possível conectar ao servidor."
+        mostrarNotificacao(
+            "Não foi possível conectar ao servidor.",
+            "erro"
         );
     }
 }
@@ -779,195 +1294,41 @@ async function excluirHabito(id) {
 // ADICIONAR HÁBITO
 // ========================================
 
-btnAdicionarHabito.addEventListener("click", () => {
+btnAdicionarHabito.addEventListener(
+    "click",
+    () => {
 
-    habitoEditandoId = null;
+        habitoEditandoId =
+            null;
 
-    formularioHabito.classList.remove(
-        "escondido"
-    );
 
-    mensagemFormularioHabito.textContent = "";
-
-    nomeHabito.value = "";
-    categoriaHabito.value = "";
-    frequenciaHabito.value = "";
-    horarioHabito.value = "";
-
-    const tituloFormulario =
-        formularioHabito.querySelector("h3");
-
-    if (tituloFormulario) {
-
-        tituloFormulario.textContent =
-            "Novo hábito";
-    }
-
-    btnSalvarHabito.textContent =
-        "Salvar hábito";
-
-    nomeHabito.focus();
-
-});
-
-
-// ========================================
-// SALVAR / ATUALIZAR HÁBITO
-// ========================================
-
-btnSalvarHabito.addEventListener("click", async () => {
-
-    const token =
-        localStorage.getItem("token");
-
-    const nome =
-        nomeHabito.value.trim();
-
-    const categoria =
-        categoriaHabito.value.trim();
-
-    const frequencia =
-        frequenciaHabito.value;
-
-    const horario =
-        horarioHabito.value;
-
-
-    mensagemFormularioHabito.textContent = "";
-
-
-    if (!nome) {
-
-        mensagemFormularioHabito.textContent =
-            "Digite o nome do hábito.";
-
-        nomeHabito.focus();
-
-        return;
-    }
-
-
-    if (!token) {
-
-        mostrarTela(telaLogin);
-
-        return;
-    }
-
-
-    try {
-
-        btnSalvarHabito.disabled = true;
-
-
-        if (habitoEditandoId !== null) {
-
-            btnSalvarHabito.textContent =
-                "Atualizando...";
-
-
-            const resposta = await fetch(
-                `https://claudiock-api.onrender.com/api/habitos/${habitoEditandoId}`,
-                {
-                    method: "PUT",
-
-                    headers: {
-                        "Content-Type": "application/json",
-
-                        "Authorization":
-                            `Bearer ${token}`
-                    },
-
-                    body: JSON.stringify({
-                        nome: nome,
-                        categoria: categoria || null,
-                        frequencia: frequencia || null,
-                        horario: horario || null
-                    })
-                }
-            );
-
-
-            const dados =
-                await resposta.json();
-
-
-            if (!resposta.ok) {
-
-                throw new Error(
-                    dados.mensagem ||
-                    "Erro ao atualizar hábito."
-                );
-            }
-
-
-            alert(
-                "Hábito atualizado com sucesso!"
-            );
-
-
-        } else {
-
-            btnSalvarHabito.textContent =
-                "Salvando...";
-
-
-            const resposta = await fetch(
-                "https://claudiock-api.onrender.com/api/habitos",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json",
-
-                        "Authorization":
-                            `Bearer ${token}`
-                    },
-
-                    body: JSON.stringify({
-                        nome: nome,
-                        categoria: categoria || null,
-                        frequencia: frequencia || null,
-                        horario: horario || null
-                    })
-                }
-            );
-
-
-            const dados =
-                await resposta.json();
-
-
-            if (!resposta.ok) {
-
-                throw new Error(
-                    dados.mensagem ||
-                    "Erro ao criar hábito."
-                );
-            }
-
-
-            alert(
-                "Hábito criado com sucesso!"
-            );
-        }
-
-
-        formularioHabito.classList.add(
+        formularioHabito.classList.remove(
             "escondido"
         );
 
-        habitoEditandoId = null;
 
-        nomeHabito.value = "";
-        categoriaHabito.value = "";
-        frequenciaHabito.value = "";
-        horarioHabito.value = "";
+        mensagemFormularioHabito.textContent =
+            "";
 
-        mensagemFormularioHabito.textContent = "";
+
+        nomeHabito.value =
+            "";
+
+        categoriaHabito.value =
+            "";
+
+        frequenciaHabito.value =
+            "";
+
+        horarioHabito.value =
+            "";
+
 
         const tituloFormulario =
-            formularioHabito.querySelector("h3");
+            formularioHabito.querySelector(
+                "h3"
+            );
+
 
         if (tituloFormulario) {
 
@@ -975,53 +1336,300 @@ btnSalvarHabito.addEventListener("click", async () => {
                 "Novo hábito";
         }
 
+
         btnSalvarHabito.textContent =
             "Salvar hábito";
 
 
-        await carregarHabitos();
+        nomeHabito.focus();
 
-        await carregarResumo();
+    }
+);
 
 
-    } catch (erro) {
+// ========================================
+// SALVAR / ATUALIZAR HÁBITO
+// ========================================
 
-        console.error(
-            "Erro ao salvar/atualizar hábito:",
-            erro
-        );
+btnSalvarHabito.addEventListener(
+    "click",
+    async () => {
+
+        const token =
+            localStorage.getItem(
+                "token"
+            );
+
+
+        const nome =
+            nomeHabito.value.trim();
+
+
+        const categoria =
+            categoriaHabito.value.trim();
+
+
+        const frequencia =
+            frequenciaHabito.value;
+
+
+        const horario =
+            horarioHabito.value;
+
 
         mensagemFormularioHabito.textContent =
-            erro.message ||
-            "Não foi possível salvar o hábito.";
+            "";
 
 
-    } finally {
+        if (!nome) {
 
-        btnSalvarHabito.disabled = false;
+            mensagemFormularioHabito.textContent =
+                "Digite o nome do hábito.";
 
-        if (habitoEditandoId === null) {
+            nomeHabito.focus();
+
+            return;
+        }
+
+
+        if (!token) {
+
+            mostrarTela(
+                telaLogin
+            );
+
+            return;
+        }
+
+
+        try {
+
+            btnSalvarHabito.disabled =
+                true;
+
+
+            if (
+                habitoEditandoId !==
+                null
+            ) {
+
+                btnSalvarHabito.textContent =
+                    "Atualizando...";
+
+
+                const resposta =
+                    await fetch(
+                        `https://claudiock-api.onrender.com/api/habitos/${habitoEditandoId}`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    nome:
+                                        nome,
+
+                                    categoria:
+                                        categoria ||
+                                        null,
+
+                                    frequencia:
+                                        frequencia ||
+                                        null,
+
+                                    horario:
+                                        horario ||
+                                        null
+                                })
+                        }
+                    );
+
+
+                const dados =
+                    await resposta.json();
+
+
+                if (!resposta.ok) {
+
+                    throw new Error(
+                        dados.mensagem ||
+                        "Erro ao atualizar hábito."
+                    );
+                }
+
+
+                mostrarNotificacao(
+                    "Hábito atualizado com sucesso!",
+                    "sucesso"
+                );
+
+
+            } else {
+
+                btnSalvarHabito.textContent =
+                    "Salvando...";
+
+
+                const resposta =
+                    await fetch(
+                        "https://claudiock-api.onrender.com/api/habitos",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    nome:
+                                        nome,
+
+                                    categoria:
+                                        categoria ||
+                                        null,
+
+                                    frequencia:
+                                        frequencia ||
+                                        null,
+
+                                    horario:
+                                        horario ||
+                                        null
+                                })
+                        }
+                    );
+
+
+                const dados =
+                    await resposta.json();
+
+
+                if (!resposta.ok) {
+
+                    throw new Error(
+                        dados.mensagem ||
+                        "Erro ao criar hábito."
+                    );
+                }
+
+
+                mostrarNotificacao(
+                    "Hábito criado com sucesso!",
+                    "sucesso"
+                );
+            }
+
+
+            formularioHabito.classList.add(
+                "escondido"
+            );
+
+
+            habitoEditandoId =
+                null;
+
+
+            nomeHabito.value =
+                "";
+
+            categoriaHabito.value =
+                "";
+
+            frequenciaHabito.value =
+                "";
+
+            horarioHabito.value =
+                "";
+
+
+            mensagemFormularioHabito.textContent =
+                "";
+
+
+            const tituloFormulario =
+                formularioHabito.querySelector(
+                    "h3"
+                );
+
+
+            if (tituloFormulario) {
+
+                tituloFormulario.textContent =
+                    "Novo hábito";
+            }
+
 
             btnSalvarHabito.textContent =
                 "Salvar hábito";
+
+
+            await carregarHabitos();
+
+            await carregarResumo();
+
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao salvar/atualizar hábito:",
+                erro
+            );
+
+
+            mensagemFormularioHabito.textContent =
+                erro.message ||
+                "Não foi possível salvar o hábito.";
+
+
+        } finally {
+
+            btnSalvarHabito.disabled =
+                false;
+
+
+            if (
+                habitoEditandoId ===
+                null
+            ) {
+
+                btnSalvarHabito.textContent =
+                    "Salvar hábito";
+            }
+
         }
 
     }
-
-});
+);
 
 
 // ========================================
 // DASHBOARD → COMPROMISSOS
 // ========================================
 
-btnCompromissos.addEventListener("click", async () => {
+btnCompromissos.addEventListener(
+    "click",
+    async () => {
 
-    mostrarTela(telaCompromissos);
+        mostrarTela(
+            telaCompromissos
+        );
 
-    await carregarCompromissos();
+        await carregarCompromissos();
 
-});
+    }
+);
 
 
 // ========================================
@@ -1032,7 +1640,9 @@ btnVoltarDashboardCompromissos.addEventListener(
     "click",
     () => {
 
-        mostrarTela(telaDashboard);
+        mostrarTela(
+            telaDashboard
+        );
 
         carregarResumo();
 
@@ -1047,18 +1657,28 @@ btnVoltarDashboardCompromissos.addEventListener(
 async function carregarCompromissos() {
 
     const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+            "token"
+        );
+
 
     const listaCompromissos =
-        document.getElementById("listaCompromissos");
+        document.getElementById(
+            "listaCompromissos"
+        );
+
 
     const mensagemCompromissos =
-        document.getElementById("mensagemCompromissos");
+        document.getElementById(
+            "mensagemCompromissos"
+        );
 
 
     if (!token) {
 
-        mostrarTela(telaLogin);
+        mostrarTela(
+            telaLogin
+        );
 
         return;
     }
@@ -1066,17 +1686,18 @@ async function carregarCompromissos() {
 
     try {
 
-        const resposta = await fetch(
-            "https://claudiock-api.onrender.com/api/compromissos",
-            {
-                method: "GET",
+        const resposta =
+            await fetch(
+                "https://claudiock-api.onrender.com/api/compromissos",
+                {
+                    method: "GET",
 
-                headers: {
-                    "Authorization":
-                        `Bearer ${token}`
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
 
         const dados =
@@ -1085,16 +1706,18 @@ async function carregarCompromissos() {
 
         if (!resposta.ok) {
 
-            alert(
+            mostrarNotificacao(
                 dados.mensagem ||
-                "Não foi possível carregar os compromissos."
+                "Não foi possível carregar os compromissos.",
+                "erro"
             );
 
             return;
         }
 
 
-        listaCompromissos.innerHTML = "";
+        listaCompromissos.innerHTML =
+            "";
 
 
         if (dados.length === 0) {
@@ -1119,325 +1742,355 @@ async function carregarCompromissos() {
             `${dados.length} compromisso(s) cadastrado(s).`;
 
 
-        // ========================================
-        // CRIA OS CARDS
-        // ========================================
+        dados.forEach(
+            (compromisso) => {
 
-        dados.forEach((compromisso) => {
-
-            const item =
-                document.createElement("article");
-
-
-            // Normaliza o estado para evitar problemas
-            // caso algum registro antigo ainda tenha valor inesperado.
-            const estado =
-                compromisso.concluido === "concluido" ||
-                compromisso.concluido === "nao_concluido" ||
-                compromisso.concluido === "pendente"
-                    ? compromisso.concluido
-                    : "pendente";
+                const item =
+                    document.createElement(
+                        "article"
+                    );
 
 
-            item.className =
-                `compromisso-item compromisso-${estado}`;
+                const estado =
+                    compromisso.concluido ===
+                        "concluido" ||
+
+                    compromisso.concluido ===
+                        "nao_concluido" ||
+
+                    compromisso.concluido ===
+                        "pendente"
+
+                        ? compromisso.concluido
+                        : "pendente";
 
 
-            // ========================================
-            // DATA
-            // ========================================
-
-            let dataFormatada =
-                "Sem data";
+                item.className =
+                    `compromisso-item compromisso-${estado}`;
 
 
-            if (compromisso.data) {
+                let dataFormatada =
+                    "Sem data";
 
-                const partes =
+
+                if (
                     compromisso.data
-                        .slice(0, 10)
-                        .split("-");
+                ) {
 
-                if (partes.length === 3) {
+                    const partes =
+                        compromisso.data
+                            .slice(
+                                0,
+                                10
+                            )
+                            .split("-");
 
-                    dataFormatada =
-                        `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+                    if (
+                        partes.length ===
+                        3
+                    ) {
+
+                        dataFormatada =
+                            `${partes[2]}/${partes[1]}/${partes[0]}`;
+                    }
                 }
-            }
 
 
-            // ========================================
-            // OUTRAS INFORMAÇÕES
-            // ========================================
-
-            const horario =
-                compromisso.horario
-                    ? compromisso.horario.slice(0, 5)
-                    : "Sem horário";
-
-
-            const local =
-                compromisso.local ||
-                "Sem local";
+                const horario =
+                    compromisso.horario
+                        ? compromisso.horario.slice(
+                            0,
+                            5
+                        )
+                        : "Sem horário";
 
 
-            const descricao =
-                compromisso.descricao ||
-                "Sem descrição";
+                const local =
+                    compromisso.local ||
+                    "Sem local";
 
 
-            // ========================================
-            // STATUS
-            // ========================================
-
-            let icone = "◷";
-            let textoStatus = "Pendente";
+                const descricao =
+                    compromisso.descricao ||
+                    "Sem descrição";
 
 
-            if (estado === "concluido") {
-
-                icone = "✓";
-                textoStatus = "Concluído";
-
-            } else if (estado === "nao_concluido") {
-
-                icone = "×";
-                textoStatus = "Não concluído";
-            }
+                let icone =
+                    "◷";
 
 
-            // ========================================
-            // BOTÕES DE STATUS
-            // ========================================
-
-            let botoesStatus = "";
+                let textoStatus =
+                    "Pendente";
 
 
-            if (estado === "pendente") {
+                if (
+                    estado ===
+                    "concluido"
+                ) {
 
-                botoesStatus = `
-                    <button
-                        class="compromisso-acao status-concluir"
-                        type="button"
-                        data-id="${compromisso.id}"
-                        title="Marcar como concluído"
-                    >
-                        Concluir
-                    </button>
+                    icone =
+                        "✓";
 
-                    <button
-                        class="compromisso-acao status-nao-concluir"
-                        type="button"
-                        data-id="${compromisso.id}"
-                        title="Marcar como não concluído"
-                    >
-                        Não concluído
-                    </button>
+                    textoStatus =
+                        "Concluído";
+
+
+                } else if (
+                    estado ===
+                    "nao_concluido"
+                ) {
+
+                    icone =
+                        "×";
+
+                    textoStatus =
+                        "Não concluído";
+                }
+
+
+                let botoesStatus =
+                    "";
+
+
+                if (
+                    estado ===
+                    "pendente"
+                ) {
+
+                    botoesStatus = `
+                        <button
+                            class="compromisso-acao status-concluir"
+                            type="button"
+                            data-id="${compromisso.id}"
+                            title="Marcar como concluído"
+                        >
+                            Concluir
+                        </button>
+
+                        <button
+                            class="compromisso-acao status-nao-concluir"
+                            type="button"
+                            data-id="${compromisso.id}"
+                            title="Marcar como não concluído"
+                        >
+                            Não concluído
+                        </button>
+                    `;
+
+
+                } else {
+
+                    botoesStatus = `
+                        <button
+                            class="compromisso-acao status-pendente"
+                            type="button"
+                            data-id="${compromisso.id}"
+                            title="Voltar para pendente"
+                        >
+                            Pendente
+                        </button>
+                    `;
+                }
+
+
+                item.innerHTML = `
+                    <div class="compromisso-icone">
+                        ${icone}
+                    </div>
+
+                    <div class="compromisso-info">
+
+                        <strong>
+                            ${compromisso.titulo}
+                        </strong>
+
+                        <p>
+                            Data: ${dataFormatada}
+                        </p>
+
+                        <p>
+                            Horário: ${horario}
+                        </p>
+
+                        <p>
+                            Local: ${local}
+                        </p>
+
+                        <p>
+                            ${descricao}
+                        </p>
+
+                        <span
+                            class="compromisso-status status-${estado}"
+                        >
+                            ${textoStatus}
+                        </span>
+
+                    </div>
+
+                    <div class="compromisso-acoes">
+
+                        ${botoesStatus}
+
+                        <button
+                            class="compromisso-acao editar"
+                            type="button"
+                            data-id="${compromisso.id}"
+                            title="Editar compromisso"
+                        >
+                            Editar
+                        </button>
+
+                        <button
+                            class="compromisso-acao excluir"
+                            type="button"
+                            data-id="${compromisso.id}"
+                            title="Excluir compromisso"
+                        >
+                            ×
+                        </button>
+
+                    </div>
                 `;
 
-            } else {
 
-                botoesStatus = `
-                    <button
-                        class="compromisso-acao status-pendente"
-                        type="button"
-                        data-id="${compromisso.id}"
-                        title="Voltar para pendente"
-                    >
-                        Pendente
-                    </button>
-                `;
+                listaCompromissos.appendChild(
+                    item
+                );
+
             }
+        );
 
-
-            item.innerHTML = `
-                <div class="compromisso-icone">
-                    ${icone}
-                </div>
-
-                <div class="compromisso-info">
-
-                    <strong>
-                        ${compromisso.titulo}
-                    </strong>
-
-                    <p>
-                        Data: ${dataFormatada}
-                    </p>
-
-                    <p>
-                        Horário: ${horario}
-                    </p>
-
-                    <p>
-                        Local: ${local}
-                    </p>
-
-                    <p>
-                        ${descricao}
-                    </p>
-
-                    <span class="compromisso-status status-${estado}">
-                        ${textoStatus}
-                    </span>
-
-                </div>
-
-                <div class="compromisso-acoes">
-
-                    ${botoesStatus}
-
-                    <button
-                        class="compromisso-acao editar"
-                        type="button"
-                        data-id="${compromisso.id}"
-                        title="Editar compromisso"
-                    >
-                        Editar
-                    </button>
-
-                    <button
-                        class="compromisso-acao excluir"
-                        type="button"
-                        data-id="${compromisso.id}"
-                        title="Excluir compromisso"
-                    >
-                        ×
-                    </button>
-
-                </div>
-            `;
-
-
-            listaCompromissos.appendChild(item);
-
-        });
-
-
-        // ========================================
-        // BOTÃO CONCLUIR
-        // ========================================
 
         document
-            .querySelectorAll(".status-concluir")
-            .forEach((botao) => {
+            .querySelectorAll(
+                ".status-concluir"
+            )
+            .forEach(
+                (botao) => {
 
-                botao.addEventListener(
-                    "click",
-                    () => {
+                    botao.addEventListener(
+                        "click",
+                        () => {
 
-                        alterarEstadoCompromisso(
-                            botao.dataset.id,
-                            "concluido"
-                        );
-
-                    }
-                );
-
-            });
-
-
-        // ========================================
-        // BOTÃO NÃO CONCLUÍDO
-        // ========================================
-
-        document
-            .querySelectorAll(".status-nao-concluir")
-            .forEach((botao) => {
-
-                botao.addEventListener(
-                    "click",
-                    () => {
-
-                        alterarEstadoCompromisso(
-                            botao.dataset.id,
-                            "nao_concluido"
-                        );
-
-                    }
-                );
-
-            });
-
-
-        // ========================================
-        // VOLTAR PARA PENDENTE
-        // ========================================
-
-        document
-            .querySelectorAll(".status-pendente")
-            .forEach((botao) => {
-
-                botao.addEventListener(
-                    "click",
-                    () => {
-
-                        alterarEstadoCompromisso(
-                            botao.dataset.id,
-                            "pendente"
-                        );
-
-                    }
-                );
-
-            });
-
-
-        // ========================================
-        // EDITAR
-        // ========================================
-
-        document
-            .querySelectorAll(".compromisso-acao.editar")
-            .forEach((botao) => {
-
-                botao.addEventListener(
-                    "click",
-                    () => {
-
-                        const id =
-                            botao.dataset.id;
-
-
-                        const compromisso =
-                            dados.find(
-                                (item) =>
-                                    String(item.id) ===
-                                    String(id)
-                            );
-
-
-                        if (compromisso) {
-
-                            editarCompromisso(
-                                compromisso
+                            alterarEstadoCompromisso(
+                                botao.dataset.id,
+                                "concluido"
                             );
 
                         }
+                    );
 
-                    }
-                );
+                }
+            );
 
-            });
-
-
-        // ========================================
-        // EXCLUIR
-        // ========================================
 
         document
-            .querySelectorAll(".compromisso-acao.excluir")
-            .forEach((botao) => {
+            .querySelectorAll(
+                ".status-nao-concluir"
+            )
+            .forEach(
+                (botao) => {
 
-                botao.addEventListener(
-                    "click",
-                    () =>
-                        excluirCompromisso(
-                            botao.dataset.id
-                        )
-                );
+                    botao.addEventListener(
+                        "click",
+                        () => {
 
-            });
+                            alterarEstadoCompromisso(
+                                botao.dataset.id,
+                                "nao_concluido"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                ".status-pendente"
+            )
+            .forEach(
+                (botao) => {
+
+                    botao.addEventListener(
+                        "click",
+                        () => {
+
+                            alterarEstadoCompromisso(
+                                botao.dataset.id,
+                                "pendente"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                ".compromisso-acao.editar"
+            )
+            .forEach(
+                (botao) => {
+
+                    botao.addEventListener(
+                        "click",
+                        () => {
+
+                            const id =
+                                botao.dataset.id;
+
+
+                            const compromisso =
+                                dados.find(
+                                    (item) =>
+                                        String(
+                                            item.id
+                                        ) ===
+                                        String(id)
+                                );
+
+
+                            if (
+                                compromisso
+                            ) {
+
+                                editarCompromisso(
+                                    compromisso
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                ".compromisso-acao.excluir"
+            )
+            .forEach(
+                (botao) => {
+
+                    botao.addEventListener(
+                        "click",
+                        () =>
+                            excluirCompromisso(
+                                botao.dataset.id
+                            )
+                    );
+
+                }
+            );
 
 
     } catch (erro) {
@@ -1447,8 +2100,9 @@ async function carregarCompromissos() {
             erro
         );
 
-        alert(
-            "Não foi possível conectar ao servidor."
+        mostrarNotificacao(
+            "Não foi possível conectar ao servidor.",
+            "erro"
         );
     }
 }
@@ -1458,15 +2112,22 @@ async function carregarCompromissos() {
 // ALTERAR ESTADO DO COMPROMISSO
 // ========================================
 
-async function alterarEstadoCompromisso(id, novoEstado) {
+async function alterarEstadoCompromisso(
+    id,
+    novoEstado
+) {
 
     const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+            "token"
+        );
 
 
     if (!token) {
 
-        mostrarTela(telaLogin);
+        mostrarTela(
+            telaLogin
+        );
 
         return;
     }
@@ -1474,18 +2135,18 @@ async function alterarEstadoCompromisso(id, novoEstado) {
 
     try {
 
-        // Busca o compromisso atual
-        const respostaBusca = await fetch(
-            "https://claudiock-api.onrender.com/api/compromissos",
-            {
-                method: "GET",
+        const respostaBusca =
+            await fetch(
+                "https://claudiock-api.onrender.com/api/compromissos",
+                {
+                    method: "GET",
 
-                headers: {
-                    "Authorization":
-                        `Bearer ${token}`
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
 
         const compromissos =
@@ -1494,9 +2155,10 @@ async function alterarEstadoCompromisso(id, novoEstado) {
 
         if (!respostaBusca.ok) {
 
-            alert(
+            mostrarNotificacao(
                 compromissos.mensagem ||
-                "Não foi possível buscar o compromisso."
+                "Não foi possível buscar o compromisso.",
+                "erro"
             );
 
             return;
@@ -1506,55 +2168,64 @@ async function alterarEstadoCompromisso(id, novoEstado) {
         const compromisso =
             compromissos.find(
                 (item) =>
-                    String(item.id) === String(id)
+                    String(
+                        item.id
+                    ) ===
+                    String(id)
             );
 
 
         if (!compromisso) {
 
-            alert(
-                "Compromisso não encontrado."
+            mostrarNotificacao(
+                "Compromisso não encontrado.",
+                "erro"
             );
 
             return;
         }
 
 
-        const resposta = await fetch(
-            `https://claudiock-api.onrender.com/api/compromissos/${id}`,
-            {
-                method: "PUT",
+        const resposta =
+            await fetch(
+                `https://claudiock-api.onrender.com/api/compromissos/${id}`,
+                {
+                    method: "PUT",
 
-                headers: {
-                    "Content-Type":
-                        "application/json",
+                    headers: {
+                        "Content-Type":
+                            "application/json",
 
-                    "Authorization":
-                        `Bearer ${token}`
-                },
+                        "Authorization":
+                            `Bearer ${token}`
+                    },
 
-                body: JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                    titulo:
-                        compromisso.titulo,
+                            titulo:
+                                compromisso.titulo,
 
-                    data:
-                        compromisso.data,
+                            data:
+                                compromisso.data,
 
-                    horario:
-                        compromisso.horario || null,
+                            horario:
+                                compromisso.horario ||
+                                null,
 
-                    local:
-                        compromisso.local || null,
+                            local:
+                                compromisso.local ||
+                                null,
 
-                    descricao:
-                        compromisso.descricao || null,
+                            descricao:
+                                compromisso.descricao ||
+                                null,
 
-                    concluido:
-                        novoEstado
-                })
-            }
-        );
+                            concluido:
+                                novoEstado
+                        })
+                }
+            );
 
 
         const dados =
@@ -1582,9 +2253,10 @@ async function alterarEstadoCompromisso(id, novoEstado) {
             erro
         );
 
-        alert(
+        mostrarNotificacao(
             erro.message ||
-            "Não foi possível alterar o estado do compromisso."
+            "Não foi possível alterar o estado do compromisso.",
+            "erro"
         );
     }
 }
@@ -1594,39 +2266,50 @@ async function alterarEstadoCompromisso(id, novoEstado) {
 // EDITAR COMPROMISSO
 // ========================================
 
-function editarCompromisso(compromisso) {
+function editarCompromisso(
+    compromisso
+) {
 
     compromissoEditandoId =
         compromisso.id;
 
 
-    // Agora guarda o texto do estado
     compromissoEditandoEstado =
-        compromisso.concluido || "pendente";
+        compromisso.concluido ||
+        "pendente";
 
 
     tituloCompromisso.value =
-        compromisso.titulo || "";
+        compromisso.titulo ||
+        "";
 
 
     dataCompromisso.value =
         compromisso.data
-            ? compromisso.data.slice(0, 10)
+            ? compromisso.data.slice(
+                0,
+                10
+            )
             : "";
 
 
     horarioCompromisso.value =
         compromisso.horario
-            ? compromisso.horario.slice(0, 5)
+            ? compromisso.horario.slice(
+                0,
+                5
+            )
             : "";
 
 
     localCompromisso.value =
-        compromisso.local || "";
+        compromisso.local ||
+        "";
 
 
     descricaoCompromisso.value =
-        compromisso.descricao || "";
+        compromisso.descricao ||
+        "";
 
 
     formularioCompromisso.classList.remove(
@@ -1635,7 +2318,9 @@ function editarCompromisso(compromisso) {
 
 
     const tituloFormulario =
-        formularioCompromisso.querySelector("h3");
+        formularioCompromisso.querySelector(
+            "h3"
+        );
 
 
     if (tituloFormulario) {
@@ -1654,7 +2339,6 @@ function editarCompromisso(compromisso) {
 
 
     tituloCompromisso.focus();
-
 }
 
 
@@ -1666,7 +2350,9 @@ btnAdicionarCompromisso.addEventListener(
     "click",
     () => {
 
-        compromissoEditandoId = null;
+        compromissoEditandoId =
+            null;
+
 
         compromissoEditandoEstado =
             "pendente";
@@ -1681,15 +2367,26 @@ btnAdicionarCompromisso.addEventListener(
             "";
 
 
-        tituloCompromisso.value = "";
-        dataCompromisso.value = "";
-        horarioCompromisso.value = "";
-        localCompromisso.value = "";
-        descricaoCompromisso.value = "";
+        tituloCompromisso.value =
+            "";
+
+        dataCompromisso.value =
+            "";
+
+        horarioCompromisso.value =
+            "";
+
+        localCompromisso.value =
+            "";
+
+        descricaoCompromisso.value =
+            "";
 
 
         const tituloFormulario =
-            formularioCompromisso.querySelector("h3");
+            formularioCompromisso.querySelector(
+                "h3"
+            );
 
 
         if (tituloFormulario) {
@@ -1722,17 +2419,28 @@ btnCancelarCompromisso.addEventListener(
         );
 
 
-        compromissoEditandoId = null;
+        compromissoEditandoId =
+            null;
+
 
         compromissoEditandoEstado =
             "pendente";
 
 
-        tituloCompromisso.value = "";
-        dataCompromisso.value = "";
-        horarioCompromisso.value = "";
-        localCompromisso.value = "";
-        descricaoCompromisso.value = "";
+        tituloCompromisso.value =
+            "";
+
+        dataCompromisso.value =
+            "";
+
+        horarioCompromisso.value =
+            "";
+
+        localCompromisso.value =
+            "";
+
+        descricaoCompromisso.value =
+            "";
 
 
         mensagemFormularioCompromisso.textContent =
@@ -1740,7 +2448,9 @@ btnCancelarCompromisso.addEventListener(
 
 
         const tituloFormulario =
-            formularioCompromisso.querySelector("h3");
+            formularioCompromisso.querySelector(
+                "h3"
+            );
 
 
         if (tituloFormulario) {
@@ -1761,11 +2471,14 @@ btnCancelarCompromisso.addEventListener(
 // EXCLUIR COMPROMISSO
 // ========================================
 
-async function excluirCompromisso(id) {
+async function excluirCompromisso(
+    id
+) {
 
     const confirmar =
-        confirm(
-            "Deseja realmente excluir este compromisso?"
+        await mostrarConfirmacao(
+            "Deseja realmente excluir este compromisso?",
+            "Excluir compromisso"
         );
 
 
@@ -1776,12 +2489,16 @@ async function excluirCompromisso(id) {
 
 
     const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+            "token"
+        );
 
 
     if (!token) {
 
-        mostrarTela(telaLogin);
+        mostrarTela(
+            telaLogin
+        );
 
         return;
     }
@@ -1789,17 +2506,18 @@ async function excluirCompromisso(id) {
 
     try {
 
-        const resposta = await fetch(
-            `https://claudiock-api.onrender.com/api/compromissos/${id}`,
-            {
-                method: "DELETE",
+        const resposta =
+            await fetch(
+                `https://claudiock-api.onrender.com/api/compromissos/${id}`,
+                {
+                    method: "DELETE",
 
-                headers: {
-                    "Authorization":
-                        `Bearer ${token}`
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
 
         const dados =
@@ -1808,17 +2526,19 @@ async function excluirCompromisso(id) {
 
         if (!resposta.ok) {
 
-            alert(
+            mostrarNotificacao(
                 dados.mensagem ||
-                "Não foi possível excluir o compromisso."
+                "Não foi possível excluir o compromisso.",
+                "erro"
             );
 
             return;
         }
 
 
-        alert(
-            "Compromisso excluído com sucesso!"
+        mostrarNotificacao(
+            "Compromisso excluído com sucesso!",
+            "sucesso"
         );
 
 
@@ -1834,8 +2554,9 @@ async function excluirCompromisso(id) {
             erro
         );
 
-        alert(
-            "Não foi possível conectar ao servidor."
+        mostrarNotificacao(
+            "Não foi possível conectar ao servidor.",
+            "erro"
         );
     }
 }
@@ -1850,20 +2571,26 @@ btnSalvarCompromisso.addEventListener(
     async () => {
 
         const token =
-            localStorage.getItem("token");
+            localStorage.getItem(
+                "token"
+            );
 
 
         const titulo =
             tituloCompromisso.value.trim();
 
+
         const data =
             dataCompromisso.value;
+
 
         const horario =
             horarioCompromisso.value;
 
+
         const local =
             localCompromisso.value.trim();
+
 
         const descricao =
             descricaoCompromisso.value.trim();
@@ -1897,7 +2624,9 @@ btnSalvarCompromisso.addEventListener(
 
         if (!token) {
 
-            mostrarTela(telaLogin);
+            mostrarTela(
+                telaLogin
+            );
 
             return;
         }
@@ -1905,54 +2634,63 @@ btnSalvarCompromisso.addEventListener(
 
         try {
 
-            btnSalvarCompromisso.disabled = true;
+            btnSalvarCompromisso.disabled =
+                true;
 
 
             // ========================================
             // MODO EDIÇÃO
             // ========================================
 
-            if (compromissoEditandoId !== null) {
+            if (
+                compromissoEditandoId !==
+                null
+            ) {
 
                 btnSalvarCompromisso.textContent =
                     "Atualizando...";
 
 
-                const resposta = await fetch(
-                    `https://claudiock-api.onrender.com/api/compromissos/${compromissoEditandoId}`,
-                    {
-                        method: "PUT",
+                const resposta =
+                    await fetch(
+                        `https://claudiock-api.onrender.com/api/compromissos/${compromissoEditandoId}`,
+                        {
+                            method: "PUT",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json",
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
 
-                            "Authorization":
-                                `Bearer ${token}`
-                        },
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
 
-                        body: JSON.stringify({
+                            body:
+                                JSON.stringify({
 
-                            titulo:
-                                titulo,
+                                    titulo:
+                                        titulo,
 
-                            data:
-                                data,
+                                    data:
+                                        data,
 
-                            horario:
-                                horario || null,
+                                    horario:
+                                        horario ||
+                                        null,
 
-                            local:
-                                local || null,
+                                    local:
+                                        local ||
+                                        null,
 
-                            descricao:
-                                descricao || null,
+                                    descricao:
+                                        descricao ||
+                                        null,
 
-                            concluido:
-                                compromissoEditandoEstado
-                        })
-                    }
-                );
+                                    concluido:
+                                        compromissoEditandoEstado
+                                })
+                        }
+                    );
 
 
                 const dados =
@@ -1968,8 +2706,9 @@ btnSalvarCompromisso.addEventListener(
                 }
 
 
-                alert(
-                    "Compromisso atualizado com sucesso!"
+                mostrarNotificacao(
+                    "Compromisso atualizado com sucesso!",
+                    "sucesso"
                 );
 
 
@@ -1983,38 +2722,43 @@ btnSalvarCompromisso.addEventListener(
                     "Salvando...";
 
 
-                const resposta = await fetch(
-                    "https://claudiock-api.onrender.com/api/compromissos",
-                    {
-                        method: "POST",
+                const resposta =
+                    await fetch(
+                        "https://claudiock-api.onrender.com/api/compromissos",
+                        {
+                            method: "POST",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json",
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
 
-                            "Authorization":
-                                `Bearer ${token}`
-                        },
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
 
-                        body: JSON.stringify({
+                            body:
+                                JSON.stringify({
 
-                            titulo:
-                                titulo,
+                                    titulo:
+                                        titulo,
 
-                            data:
-                                data,
+                                    data:
+                                        data,
 
-                            horario:
-                                horario || null,
+                                    horario:
+                                        horario ||
+                                        null,
 
-                            local:
-                                local || null,
+                                    local:
+                                        local ||
+                                        null,
 
-                            descricao:
-                                descricao || null
-                        })
-                    }
-                );
+                                    descricao:
+                                        descricao ||
+                                        null
+                                })
+                        }
+                    );
 
 
                 const dados =
@@ -2030,8 +2774,9 @@ btnSalvarCompromisso.addEventListener(
                 }
 
 
-                alert(
-                    "Compromisso criado com sucesso!"
+                mostrarNotificacao(
+                    "Compromisso criado com sucesso!",
+                    "sucesso"
                 );
             }
 
@@ -2045,17 +2790,28 @@ btnSalvarCompromisso.addEventListener(
             );
 
 
-            compromissoEditandoId = null;
+            compromissoEditandoId =
+                null;
+
 
             compromissoEditandoEstado =
                 "pendente";
 
 
-            tituloCompromisso.value = "";
-            dataCompromisso.value = "";
-            horarioCompromisso.value = "";
-            localCompromisso.value = "";
-            descricaoCompromisso.value = "";
+            tituloCompromisso.value =
+                "";
+
+            dataCompromisso.value =
+                "";
+
+            horarioCompromisso.value =
+                "";
+
+            localCompromisso.value =
+                "";
+
+            descricaoCompromisso.value =
+                "";
 
 
             mensagemFormularioCompromisso.textContent =
@@ -2063,7 +2819,9 @@ btnSalvarCompromisso.addEventListener(
 
 
             const tituloFormulario =
-                formularioCompromisso.querySelector("h3");
+                formularioCompromisso.querySelector(
+                    "h3"
+                );
 
 
             if (tituloFormulario) {
@@ -2097,10 +2855,14 @@ btnSalvarCompromisso.addEventListener(
 
         } finally {
 
-            btnSalvarCompromisso.disabled = false;
+            btnSalvarCompromisso.disabled =
+                false;
 
 
-            if (compromissoEditandoId === null) {
+            if (
+                compromissoEditandoId ===
+                null
+            ) {
 
                 btnSalvarCompromisso.textContent =
                     "Salvar compromisso";
@@ -2119,7 +2881,9 @@ btnSalvarCompromisso.addEventListener(
 async function carregarResumo() {
 
     const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+            "token"
+        );
 
 
     if (!token) {
@@ -2203,18 +2967,28 @@ async function carregarResumo() {
 // ========================================
 
 const tokenSalvo =
-    localStorage.getItem("token");
+    localStorage.getItem(
+        "token"
+    );
+
 
 const usuarioSalvo =
-    localStorage.getItem("usuario");
+    localStorage.getItem(
+        "usuario"
+    );
 
 
-if (tokenSalvo && usuarioSalvo) {
+if (
+    tokenSalvo &&
+    usuarioSalvo
+) {
 
     try {
 
         const usuario =
-            JSON.parse(usuarioSalvo);
+            JSON.parse(
+                usuarioSalvo
+            );
 
 
         document.getElementById(
@@ -2223,7 +2997,10 @@ if (tokenSalvo && usuarioSalvo) {
             usuario.nome;
 
 
-        mostrarTela(telaDashboard);
+        mostrarTela(
+            telaDashboard
+        );
+
 
         carregarResumo();
 
@@ -2236,16 +3013,27 @@ if (tokenSalvo && usuarioSalvo) {
         );
 
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("usuario");
+        localStorage.removeItem(
+            "token"
+        );
 
 
-        mostrarTela(telaSplash);
+        localStorage.removeItem(
+            "usuario"
+        );
+
+
+        mostrarTela(
+            telaSplash
+        );
     }
+
 
 } else {
 
-    mostrarTela(telaSplash);
+    mostrarTela(
+        telaSplash
+    );
 
 }
 
@@ -2254,18 +3042,38 @@ if (tokenSalvo && usuarioSalvo) {
 // SERVICE WORKER - PWA
 // ========================================
 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker
-            .register("./service-worker.js")
-            .then(() => {
-                console.log("Service Worker registrado.");
-            })
-            .catch((erro) => {
-                console.error(
-                    "Erro ao registrar Service Worker:",
-                    erro
+if (
+    "serviceWorker" in navigator
+) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register(
+                    "./service-worker.js"
+                )
+
+                .then(() => {
+
+                    console.log(
+                        "Service Worker registrado."
+                    );
+
+                })
+
+                .catch(
+                    (erro) => {
+
+                        console.error(
+                            "Erro ao registrar Service Worker:",
+                            erro
+                        );
+
+                    }
                 );
-            });
-    });
+
+        }
+    );
 }
