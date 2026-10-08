@@ -1,67 +1,650 @@
 /* ========================================
-   NOTIFICAÇÕES CLAUDIOCK
+   RESET
 ======================================== */
 
-.notificacoes-claudio {
-    position: fixed;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    top: 20px;
-    right: 20px;
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
 
-    z-index: 99999;
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background-color: var(--fundo);
+    color: var(--azul);
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
 
-    width: min(
-        380px,
-        calc(100vw - 40px)
-    );
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
 
-    display: flex;
-    flex-direction: column;
+button {
+    -webkit-tap-highlight-color: transparent;
+}
 
-    gap: 10px;
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    appearance: none;
+}
 
-    pointer-events: none;
+button,
+a,
+input,
+select,
+textarea {
+    touch-action: manipulation;
 }
 
 
 /* ========================================
-   NOTIFICAÇÃO
+   VARIÁVEIS
 ======================================== */
 
-.notificacao-claudio {
+:root {
+    --verde: #2E9B6F;
+    --verde-escuro: #25845E;
+    --verde-claro: #A7D7C5;
+
+    --azul: #293241;
+    --cinza: #64748B;
+
+    --fundo: #F8F7F2;
+    --branco: #FFFFFF;
+
+    --borda: #E2E8F0;
+    --borda-input: #CBD5E1;
+
+    --vermelho: #B42318;
+    --fundo-hover: #F1F5F9;
+
+    --raio-card: 16px;
+    --raio-input: 12px;
+    --sombra-card: 0 4px 14px rgba(41, 50, 65, 0.05);
+}
+
+
+
+
+/* ========================================
+   APP
+======================================== */
+
+#app {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+
+/* ========================================
+   TELAS
+======================================== */
+
+.tela {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.escondida {
+    display: none !important;
+}
+
+
+/* ========================================
+   SPLASH
+======================================== */
+
+.tela-splash {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 20px;
+    text-align: center;
+}
+
+.splash-content {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 20px 10px 110px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.logo-claudio {
+    width: 340px;
+    max-width: 88vw;
+
+    height: auto;
+    object-fit: contain;
+
+    margin-bottom: 16px;
+}
+
+.slogan {
+    color: var(--cinza);
+
+    font-size: 16px;
+    line-height: 1.5;
+
+    margin-bottom: 30px;
+}
+
+
+/* ========================================
+   BOTÃO PRINCIPAL
+======================================== */
+
+.btn-principal {
+    width: min(100%, 280px);
+    min-height: 48px;
+
+    padding: 13px 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: var(--verde);
+    color: var(--branco);
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    align-self: center;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-principal:hover {
+    background-color: var(--verde-escuro);
+}
+
+.btn-principal:active {
+    transform: scale(0.98);
+}
+
+
+/* ========================================
+   ONDAS
+======================================== */
+
+.ondas {
+    position: absolute;
+
+    bottom: -80px;
+    left: -10%;
+
+    width: 120%;
+    height: 220px;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+.onda {
+    position: absolute;
+
+    left: -5%;
+
+    width: 110%;
+    height: 150px;
+
+    border-radius: 50% 50% 0 0;
+}
+
+.onda-1 {
+    bottom: 0;
+    background-color: var(--verde-claro);
+    transform: rotate(-2deg);
+}
+
+.onda-2 {
+    bottom: 25px;
+    background-color: rgba(46, 155, 111, 0.18);
+    transform: rotate(3deg);
+}
+
+.onda-3 {
+    bottom: 55px;
+    background-color: rgba(167, 215, 197, 0.45);
+    transform: rotate(-4deg);
+}
+
+
+/* ========================================
+   LOGIN / CADASTRO
+======================================== */
+
+.tela-auth {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding: 24px 16px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 430px;
+
+    position: relative;
+
+    padding: 12px 4px 30px;
+}
+
+
+/* ========================================
+   BOTÃO VOLTAR
+======================================== */
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    min-height: 42px;
+
+    background-color: transparent;
+    border: none;
+
+    color: var(--cinza);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 8px 0;
+    margin-bottom: 16px;
+
+    transition: color 0.2s ease;
+}
+
+.btn-voltar:hover {
+    color: var(--verde);
+}
+
+.btn-voltar:active {
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   LOGO AUTH
+======================================== */
+
+.logo-auth {
+    display: block;
+
+    width: 190px;
+    max-width: 62vw;
+
+    height: auto;
+
+    margin: 0 auto 14px;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   TÍTULOS
+======================================== */
+
+.auth-container h1 {
+    text-align: center;
+
+    font-size: 28px;
+    line-height: 1.2;
+
+    margin-bottom: 8px;
+}
+
+.auth-subtitulo {
+    text-align: center;
+
+    color: var(--cinza);
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    margin-bottom: 26px;
+}
+
+
+/* ========================================
+   FORMULÁRIO AUTH
+======================================== */
+
+#formLogin,
+#formCadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+    min-height: 48px;
+
+    padding: 13px 15px;
+
+    border: 1px solid #D7DCE2;
+    border-radius: var(--raio-input);
+
+    background-color: var(--branco);
+
+    color: var(--azul);
+
+    font-family: inherit;
+    font-size: 16px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.campo input:focus {
+    border-color: var(--verde);
+
+    box-shadow:
+        0 0 0 3px rgba(46, 155, 111, 0.12);
+}
+
+.campo input::placeholder {
+    color: #9AA3AF;
+}
+
+
+/* ========================================
+   LINKS
+======================================== */
+
+.btn-link {
+    display: block;
+
+    min-height: 42px;
+
+    margin: 14px auto 0;
+
+    padding: 8px;
+
+    background: none;
+    border: none;
+
+    color: var(--verde);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.troca-auth {
+    text-align: center;
+
+    color: var(--cinza);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    margin-top: 24px;
+}
+
+.btn-link-inline {
+    background: none;
+    border: none;
+
+    color: var(--verde);
+
+    font-family: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-link-inline:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   DASHBOARD
+======================================== */
+
+.tela-dashboard {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    background-color: var(--fundo);
+    color: var(--azul);
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 20px 16px 40px;
+}
+
+
+/* ========================================
+   CABEÇALHO DASHBOARD
+======================================== */
+
+.dashboard-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     gap: 12px;
 
-    min-height: 58px;
+    margin-bottom: 30px;
+}
 
-    padding: 12px 14px;
+.dashboard-marca {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+
+    gap: 10px;
+}
+
+.logo-dashboard {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+}
+
+.dashboard-marca strong {
+    display: block;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.dashboard-marca span {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+    color: var(--cinza);
+}
+
+
+/* ========================================
+   BOTÃO SAIR
+======================================== */
+
+.btn-sair {
+    min-height: 42px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--borda);
+    background-color: var(--branco);
+
+    color: var(--azul);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn-sair:hover {
+    background-color: var(--fundo-hover);
+    border-color: var(--borda-input);
+}
+
+
+/* ========================================
+   BOAS-VINDAS
+======================================== */
+
+.dashboard-boas-vindas {
+    margin-bottom: 24px;
+}
+
+.dashboard-data {
+    margin-bottom: 7px;
+
+    color: var(--verde);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dashboard-boas-vindas h1 {
+    margin: 0;
+
+    font-size: 30px;
+    line-height: 1.2;
+
+    overflow-wrap: anywhere;
+}
+
+.dashboard-boas-vindas p:last-child {
+    margin-top: 7px;
+
+    color: var(--cinza);
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   RESUMO
+======================================== */
+
+.dashboard-resumo {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+.resumo-item {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+
+    gap: 10px;
+
+    padding: 14px;
 
     background-color: var(--branco);
 
     border: 1px solid var(--borda);
 
-    border-radius: 14px;
+    border-radius: var(--raio-card);
 
-    box-shadow:
-        0 10px 30px rgba(41, 50, 65, 0.14);
-
-    pointer-events: auto;
-
-    animation:
-        notificacaoEntrando
-        0.25s ease forwards;
+    box-shadow: var(--sombra-card);
 }
 
-
-/* ========================================
-   ÍCONE
-======================================== */
-
-.notificacao-icone {
-    width: 34px;
-    height: 34px;
+.resumo-icone {
+    width: 38px;
+    height: 38px;
 
     display: flex;
     align-items: center;
@@ -69,38 +652,507 @@
 
     flex-shrink: 0;
 
-    border-radius: 50%;
+    border-radius: 11px;
 
-    font-size: 16px;
+    background-color: var(--verde-claro);
+
+    color: var(--azul);
+
+    font-size: 18px;
     font-weight: 700;
+}
+
+.resumo-item strong {
+    display: block;
+
+    font-size: 21px;
+    line-height: 1.1;
+}
+
+.resumo-item div span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--cinza);
+
+    font-size: 12px;
 }
 
 
 /* ========================================
-   TEXTO
+   AÇÕES DASHBOARD
 ======================================== */
 
-.notificacao-texto {
-    flex: 1;
+.dashboard-acoes h2 {
+    margin-bottom: 14px;
 
+    font-size: 19px;
+}
+
+.dashboard-card {
+    width: 100%;
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+    padding: 15px;
+
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-card);
+
+    background-color: var(--branco);
     color: var(--azul);
 
-    font-family: inherit;
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow: var(--sombra-card);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--verde-claro);
+
+    box-shadow:
+        0 6px 18px rgba(41, 50, 65, 0.08);
+}
+
+.dashboard-card:active {
+    transform: scale(0.99);
+}
+
+.dashboard-card-icone {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background-color: var(--verde);
+
+    color: var(--branco);
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.dashboard-card div:nth-child(2) {
+    flex: 1;
+    min-width: 0;
+}
+
+.dashboard-card strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 16px;
+}
+
+.dashboard-card div span {
+    display: block;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.dashboard-seta {
+    flex-shrink: 0;
+
+    font-size: 21px;
+    color: var(--verde);
+}
+
+
+/* ========================================
+   FRASE
+======================================== */
+
+.dashboard-frase {
+    margin-top: 28px;
+    padding: 18px 8px;
+
+    border-top: 1px solid var(--borda);
+
+    text-align: center;
+}
+
+.dashboard-frase p {
+    margin: 0;
+
+    color: var(--cinza);
 
     font-size: 14px;
-    font-weight: 500;
+    font-style: italic;
+    line-height: 1.5;
+}
 
+
+/* ========================================
+   TELAS DE HÁBITOS E COMPROMISSOS
+======================================== */
+
+.tela-habitos,
+.tela-compromissos {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    background-color: var(--fundo);
+
+    color: var(--azul);
+}
+
+
+/* ========================================
+   CONTAINERS
+======================================== */
+
+.habitos-container,
+.compromissos-container {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 20px 16px 40px;
+}
+
+
+/* ========================================
+   CABEÇALHOS
+======================================== */
+
+.habitos-header,
+.compromissos-header {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+.habitos-header .btn-voltar,
+.compromissos-header .btn-voltar {
+    flex-shrink: 0;
+
+    margin-top: 0;
+}
+
+.habitos-header h1,
+.compromissos-header h1 {
+    margin: 0;
+
+    font-size: 25px;
+    line-height: 1.2;
+
+    overflow-wrap: anywhere;
+}
+
+.habitos-header p,
+.compromissos-header p {
+    margin-top: 6px;
+
+    color: var(--cinza);
+
+    font-size: 14px;
     line-height: 1.4;
 }
 
 
 /* ========================================
-   BOTÃO FECHAR
+   CONTEÚDO
 ======================================== */
 
-.notificacao-fechar {
-    width: 28px;
-    height: 28px;
+.habitos-conteudo,
+.compromissos-conteudo {
+    width: 100%;
+}
+
+
+/* ========================================
+   TOPO DA LISTA
+======================================== */
+
+.habitos-topo,
+.compromissos-topo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.habitos-topo h2,
+.compromissos-topo h2 {
+    margin: 0 0 4px;
+
+    font-size: 19px;
+}
+
+.habitos-topo p,
+.compromissos-topo p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   BOTÃO ADICIONAR
+======================================== */
+
+.btn-adicionar {
+    flex-shrink: 0;
+
+    width: auto;
+    min-width: 120px;
+    min-height: 44px;
+
+    padding: 11px 16px;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   LISTAS
+======================================== */
+
+.lista-habitos,
+.lista-compromissos {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* ========================================
+   ESTADO VAZIO
+======================================== */
+
+.habito-vazio,
+.compromisso-vazio {
+    padding: 28px 18px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: var(--raio-card);
+
+    text-align: center;
+
+    box-shadow: var(--sombra-card);
+}
+
+.habito-vazio p,
+.compromisso-vazio p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   CARDS
+======================================== */
+
+.habito-item,
+.compromisso-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    padding: 14px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: var(--raio-card);
+
+    box-shadow: var(--sombra-card);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.habito-item:hover,
+.compromisso-item:hover {
+    border-color: var(--verde-claro);
+
+    box-shadow:
+        0 5px 16px rgba(41, 50, 65, 0.06);
+}
+
+
+/* ========================================
+   ÍCONES DOS CARDS
+======================================== */
+
+.habito-icone,
+.compromisso-icone {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background-color: var(--verde-claro);
+
+    color: var(--azul);
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   INFORMAÇÕES DOS CARDS
+======================================== */
+
+.habito-info,
+.compromisso-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.habito-info strong,
+.compromisso-info strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 16px;
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+}
+
+.habito-info p,
+.compromisso-info p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   AÇÕES DOS CARDS
+======================================== */
+
+.habito-acoes,
+.compromisso-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   BOTÃO EDITAR
+======================================== */
+
+.habito-acao.editar,
+.compromisso-acao.editar {
+    min-width: 68px;
+    min-height: 38px;
+
+    padding: 0 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background-color: var(--verde);
+
+    color: var(--branco);
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.habito-acao.editar:hover,
+.compromisso-acao.editar:hover {
+    background-color: var(--verde-escuro);
+
+    transform: translateY(-1px);
+}
+
+.habito-acao.editar:active,
+.compromisso-acao.editar:active {
+    transform: scale(0.97);
+}
+
+
+/* ========================================
+   BOTÃO EXCLUIR
+======================================== */
+
+.habito-acao.excluir,
+.compromisso-acao.excluir {
+    width: 38px;
+    height: 38px;
 
     display: flex;
     align-items: center;
@@ -110,309 +1162,250 @@
 
     padding: 0;
 
-    border: none;
-    border-radius: 50%;
+    border: 1px solid #F1D0CD;
 
-    background-color: transparent;
+    border-radius: 10px;
 
-    color: var(--cinza);
+    background-color: #FFF8F7;
+
+    color: var(--vermelho);
 
     font-family: inherit;
-    font-size: 20px;
 
-    line-height: 1;
+    font-size: 17px;
+    font-weight: 600;
 
     cursor: pointer;
 
     transition:
         background-color 0.2s ease,
-        color 0.2s ease;
+        border-color 0.2s ease;
 }
 
-.notificacao-fechar:hover {
-    background-color: var(--fundo-hover);
-
-    color: var(--azul);
-}
-
-
-/* ========================================
-   SUCESSO
-======================================== */
-
-.notificacao-sucesso {
-    border-left: 4px solid var(--verde);
-}
-
-.notificacao-sucesso
-.notificacao-icone {
-    background-color: #E2F4EC;
-
-    color: var(--verde-escuro);
-}
-
-
-/* ========================================
-   ERRO
-======================================== */
-
-.notificacao-erro {
-    border-left: 4px solid var(--vermelho);
-}
-
-.notificacao-erro
-.notificacao-icone {
+.habito-acao.excluir:hover,
+.compromisso-acao.excluir:hover {
     background-color: #FDECEA;
+
+    border-color: #E9B5AF;
+}
+
+
+/* ========================================
+   BOTÕES DE STATUS
+======================================== */
+
+.compromisso-acao.status-concluir,
+.compromisso-acao.status-nao-concluir,
+.compromisso-acao.status-pendente {
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 13px;
+
+    border-radius: 20px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* ========================================
+   CONCLUIR
+======================================== */
+
+.compromisso-acao.status-concluir {
+    border: none;
+
+    background-color: var(--verde);
+    color: var(--branco);
+}
+
+.compromisso-acao.status-concluir:hover {
+    background-color: var(--verde-escuro);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   NÃO CONCLUÍDO
+======================================== */
+
+.compromisso-acao.status-nao-concluir {
+    background-color: #FFF1F0;
+
+    border: 1px solid #F1C5C1;
 
     color: var(--vermelho);
 }
 
+.compromisso-acao.status-nao-concluir:hover {
+    background-color: #FDE5E3;
 
-/* ========================================
-   AVISO
-======================================== */
-
-.notificacao-aviso {
-    border-left: 4px solid #D89B18;
-}
-
-.notificacao-aviso
-.notificacao-icone {
-    background-color: #FFF4D6;
-
-    color: #9A6A00;
+    transform: translateY(-1px);
 }
 
 
 /* ========================================
-   INFORMAÇÃO
+   VOLTAR PARA PENDENTE
 ======================================== */
 
-.notificacao-info {
-    border-left: 4px solid #3B82F6;
+.compromisso-acao.status-pendente {
+    background-color: var(--fundo-hover);
+
+    border: 1px solid var(--borda-input);
+
+    color: var(--azul);
 }
 
-.notificacao-info
-.notificacao-icone {
-    background-color: #E8F1FF;
+.compromisso-acao.status-pendente:hover {
+    background-color: #E2E8F0;
 
-    color: #2563EB;
+    transform: translateY(-1px);
 }
 
 
 /* ========================================
-   SAÍDA DA NOTIFICAÇÃO
+   FORMULÁRIOS
 ======================================== */
 
-.notificacao-claudio.saindo {
-    animation:
-        notificacaoSaindo
-        0.22s ease forwards;
-}
+.formulario-habito,
+.formulario-compromisso {
+    margin-bottom: 20px;
 
-
-/* ========================================
-   ANIMAÇÕES
-======================================== */
-
-@keyframes notificacaoEntrando {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateX(30px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateX(0);
-    }
-}
-
-
-@keyframes notificacaoSaindo {
-
-    from {
-        opacity: 1;
-
-        transform:
-            translateX(0);
-    }
-
-    to {
-        opacity: 0;
-
-        transform:
-            translateX(30px);
-    }
-}
-
-
-/* ========================================
-   MODAL DE CONFIRMAÇÃO
-======================================== */
-
-.modal-confirmacao-claudio {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 100000;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background-color:
-        rgba(41, 50, 65, 0.45);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
-}
-
-
-.modal-confirmacao-claudio.ativo {
-    opacity: 1;
-
-    visibility: visible;
-}
-
-
-/* ========================================
-   CONTEÚDO DO MODAL
-======================================== */
-
-.modal-confirmacao-conteudo {
-    width: min(
-        100%,
-        390px
-    );
-
-    padding: 26px 22px 22px;
+    padding: 18px;
 
     background-color: var(--branco);
 
     border: 1px solid var(--borda);
 
-    border-radius: 18px;
+    border-radius: var(--raio-card);
 
-    box-shadow:
-        0 20px 60px rgba(41, 50, 65, 0.2);
-
-    text-align: center;
-
-    transform:
-        translateY(10px)
-        scale(0.98);
-
-    transition:
-        transform 0.2s ease;
+    box-shadow: var(--sombra-card);
 }
 
+.formulario-habito h3,
+.formulario-compromisso h3 {
+    margin: 0 0 18px;
 
-.modal-confirmacao-claudio.ativo
-.modal-confirmacao-conteudo {
-    transform:
-        translateY(0)
-        scale(1);
+    font-size: 18px;
+    line-height: 1.3;
+
+    color: var(--azul);
 }
 
 
 /* ========================================
-   ÍCONE DO MODAL
+   CAMPOS DOS FORMULÁRIOS
 ======================================== */
 
-.modal-confirmacao-icone {
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 16px;
-
-    border-radius: 50%;
-
-    background-color: #FFF4D6;
-
-    color: #9A6A00;
-
-    font-size: 22px;
-    font-weight: 700;
+.campo-formulario {
+    margin-bottom: 15px;
 }
 
+.campo-formulario label {
+    display: block;
 
-/* ========================================
-   TÍTULO
-======================================== */
+    margin-bottom: 6px;
 
-.modal-confirmacao-titulo {
-    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--azul);
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+    width: 100%;
+    min-height: 46px;
+
+    padding: 12px 13px;
+
+    border: 1px solid var(--borda-input);
+
+    border-radius: 10px;
+
+    background-color: var(--branco);
 
     color: var(--azul);
 
-    font-size: 19px;
-    font-weight: 700;
+    font-family: inherit;
+    font-size: 16px;
 
-    line-height: 1.3;
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.campo-formulario textarea {
+    resize: vertical;
 
-/* ========================================
-   MENSAGEM
-======================================== */
-
-.modal-confirmacao-mensagem {
-    margin: 0 auto;
-
-    max-width: 320px;
-
-    color: var(--cinza);
-
-    font-size: 14px;
+    min-height: 100px;
 
     line-height: 1.5;
 }
 
+.campo-formulario input::placeholder,
+.campo-formulario textarea::placeholder {
+    color: #9AA3AF;
+}
 
-/* ========================================
-   AÇÕES DO MODAL
-======================================== */
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+    border-color: var(--verde);
 
-.modal-confirmacao-acoes {
-    display: flex;
-
-    gap: 10px;
-
-    margin-top: 24px;
+    box-shadow:
+        0 0 0 3px rgba(46, 155, 111, 0.10);
 }
 
 
 /* ========================================
-   BOTÃO CANCELAR
+   AÇÕES DO FORMULÁRIO
 ======================================== */
 
-.modal-btn-cancelar,
-.modal-btn-confirmar {
-    flex: 1;
+.acoes-formulario {
+    display: flex;
 
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+/* ========================================
+   BOTÃO SECUNDÁRIO
+======================================== */
+
+.btn-secundario {
     min-height: 44px;
 
-    padding: 10px 16px;
+    padding: 11px 18px;
+
+    border: 1px solid var(--borda-input);
 
     border-radius: 10px;
+
+    background-color: var(--branco);
+
+    color: var(--azul);
 
     font-family: inherit;
 
@@ -423,21 +1416,10 @@
 
     transition:
         background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+        border-color 0.2s ease;
 }
 
-
-.modal-btn-cancelar {
-    border: 1px solid var(--borda-input);
-
-    background-color: var(--branco);
-
-    color: var(--azul);
-}
-
-
-.modal-btn-cancelar:hover {
+.btn-secundario:hover {
     background-color: var(--fundo-hover);
 
     border-color: #B8C2CF;
@@ -445,87 +1427,889 @@
 
 
 /* ========================================
-   BOTÃO CONFIRMAR
+   MENSAGEM FORMULÁRIO
 ======================================== */
 
-.modal-btn-confirmar {
-    border: 1px solid var(--vermelho);
+.mensagem-formulario {
+    margin: 12px 0 0;
+
+    font-size: 13px;
+    line-height: 1.4;
+
+    color: var(--vermelho);
+}
+
+
+/* ========================================
+   ESTADOS DOS COMPROMISSOS
+======================================== */
+
+/* PENDENTE */
+
+.compromisso-item.compromisso-pendente {
+    background-color: var(--branco);
+    border-color: var(--borda);
+}
+
+.compromisso-item.compromisso-pendente .compromisso-icone {
+    background-color: var(--verde-claro);
+    color: var(--azul);
+}
+
+
+/* CONCLUÍDO */
+
+.compromisso-item.compromisso-concluido {
+    background-color: #ECF8F2;
+    border-color: #BFE3D1;
+}
+
+.compromisso-item.compromisso-concluido .compromisso-icone {
+    background-color: #CFEBDD;
+    color: var(--verde-escuro);
+}
+
+.compromisso-item.compromisso-concluido .compromisso-info strong {
+    color: var(--verde-escuro);
+}
+
+
+/* NÃO CONCLUÍDO */
+
+.compromisso-item.compromisso-nao_concluido {
+    background-color: #FFF1F0;
+    border-color: #F1C5C1;
+}
+
+.compromisso-item.compromisso-nao_concluido .compromisso-icone {
+    background-color: #F8D9D5;
+    color: var(--vermelho);
+}
+
+.compromisso-item.compromisso-nao_concluido .compromisso-info strong {
+    color: var(--vermelho);
+}
+
+
+/* ========================================
+   RESPONSIVIDADE — TABLET
+======================================== */
+
+@media (min-width: 481px) {
+
+    .dashboard-container,
+    .habitos-container,
+    .compromissos-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .splash-content {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVIDADE — CELULAR
+======================================== */
+
+@media (max-width: 480px) {
+
+    /* ----------------------------------------
+       SPLASH
+    ---------------------------------------- */
+
+    .tela-splash {
+        padding: 16px;
+    }
+
+    .splash-content {
+        max-width: 380px;
+
+        padding:
+            12px
+            4px
+            calc(90px + env(safe-area-inset-bottom));
+    }
+
+    .logo-claudio {
+        width: 320px;
+        max-width: 90vw;
+
+        margin-bottom: 12px;
+    }
+
+    .slogan {
+        max-width: 280px;
+
+        font-size: 15px;
+        line-height: 1.45;
+
+        margin-bottom: 26px;
+    }
+
+    .btn-principal {
+        width: min(100%, 260px);
+    }
+
+
+    /* ----------------------------------------
+       AUTH
+    ---------------------------------------- */
+
+    .tela-auth {
+        align-items: flex-start;
+
+        padding:
+            18px
+            16px
+            calc(28px + env(safe-area-inset-bottom));
+    }
+
+    .auth-container {
+        padding: 4px 0 20px;
+    }
+
+    .logo-auth {
+        width: 165px;
+        max-width: 58vw;
+
+        margin-bottom: 12px;
+    }
+
+    .auth-container h1 {
+        font-size: 25px;
+    }
+
+    .auth-subtitulo {
+        font-size: 14px;
+
+        margin-bottom: 24px;
+    }
+
+    #formLogin,
+    #formCadastro {
+        gap: 15px;
+    }
+
+
+    /* ----------------------------------------
+       DASHBOARD
+    ---------------------------------------- */
+
+    .dashboard-container {
+        padding:
+            16px
+            16px
+            calc(32px + env(safe-area-inset-bottom));
+    }
+
+    .dashboard-header {
+        margin-bottom: 26px;
+    }
+
+    .dashboard-marca {
+        gap: 9px;
+    }
+
+    .logo-dashboard {
+        width: 44px;
+        height: 44px;
+    }
+
+    .dashboard-marca strong {
+        font-size: 18px;
+    }
+
+    .dashboard-marca span {
+        font-size: 11px;
+    }
+
+    .btn-sair {
+        min-height: 40px;
+
+        padding: 7px 10px;
+
+        font-size: 12px;
+    }
+
+    .dashboard-boas-vindas {
+        margin-bottom: 22px;
+    }
+
+    .dashboard-boas-vindas h1 {
+        font-size: 28px;
+    }
+
+    .dashboard-boas-vindas p:last-child {
+        font-size: 14px;
+    }
+
+    .dashboard-resumo {
+        gap: 9px;
+
+        margin-bottom: 28px;
+    }
+
+    .resumo-item {
+        gap: 9px;
+
+        padding: 12px;
+    }
+
+    .resumo-icone {
+        width: 35px;
+        height: 35px;
+
+        border-radius: 10px;
+
+        font-size: 17px;
+    }
+
+    .resumo-item strong {
+        font-size: 20px;
+    }
+
+    .resumo-item div span {
+        font-size: 11px;
+    }
+
+    .dashboard-acoes h2 {
+        font-size: 18px;
+    }
+
+    .dashboard-card {
+        min-height: 72px;
+
+        padding: 14px;
+    }
+
+    .dashboard-card-icone {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+
+    /* ----------------------------------------
+       HÁBITOS / COMPROMISSOS
+    ---------------------------------------- */
+
+    .habitos-container,
+    .compromissos-container {
+        padding:
+            16px
+            16px
+            calc(32px + env(safe-area-inset-bottom));
+    }
+
+    .habitos-header,
+    .compromissos-header {
+        gap: 10px;
+
+        margin-bottom: 26px;
+    }
+
+    .habitos-header .btn-voltar,
+    .compromissos-header .btn-voltar {
+        margin-top: -2px;
+    }
+
+    .habitos-header h1,
+    .compromissos-header h1 {
+        font-size: 24px;
+    }
+
+    .habitos-header p,
+    .compromissos-header p {
+        font-size: 13px;
+    }
+
+
+    /* ----------------------------------------
+       TOPO DAS LISTAS
+    ---------------------------------------- */
+
+    .habitos-topo,
+    .compromissos-topo {
+        flex-direction: column;
+
+        gap: 12px;
+
+        margin-bottom: 18px;
+    }
+
+    .habitos-topo h2,
+    .compromissos-topo h2 {
+        font-size: 18px;
+    }
+
+    .btn-adicionar {
+        width: 100%;
+
+        min-height: 46px;
+    }
+
+
+    /* ----------------------------------------
+       CARDS MOBILE
+    ---------------------------------------- */
+
+    .habito-item,
+    .compromisso-item {
+        display: grid;
+
+        grid-template-columns: 42px minmax(0, 1fr);
+
+        gap: 10px;
+
+        padding: 13px;
+    }
+
+    .habito-icone,
+    .compromisso-icone {
+        width: 42px;
+        height: 42px;
+    }
+
+    .habito-info,
+    .compromisso-info {
+        align-self: center;
+    }
+
+    .habito-acoes,
+    .compromisso-acoes {
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: minmax(0, 1fr) auto;
+
+        gap: 7px;
+
+        padding-top: 3px;
+    }
+
+    .habito-acao.editar,
+    .compromisso-acao.editar {
+        width: 100%;
+
+        min-height: 40px;
+    }
+
+    .habito-acao.excluir,
+    .compromisso-acao.excluir {
+        width: 40px;
+        height: 40px;
+    }
+
+    .compromisso-acao.status-concluir,
+    .compromisso-acao.status-nao-concluir,
+    .compromisso-acao.status-pendente {
+        width: 100%;
+
+        min-height: 40px;
+    }
+
+
+    /* ----------------------------------------
+       FORMULÁRIOS MOBILE
+    ---------------------------------------- */
+
+    .formulario-habito,
+    .formulario-compromisso {
+        padding: 16px;
+
+        margin-bottom: 18px;
+    }
+
+    .formulario-habito h3,
+    .formulario-compromisso h3 {
+        font-size: 17px;
+    }
+
+    .campo-formulario {
+        margin-bottom: 14px;
+    }
+
+    .campo-formulario input,
+    .campo-formulario select,
+    .campo-formulario textarea {
+        min-height: 46px;
+
+        font-size: 16px;
+    }
+
+    .acoes-formulario {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .acoes-formulario button {
+        width: 100%;
+
+        min-height: 46px;
+    }
+
+
+    /* ----------------------------------------
+       ESTADO VAZIO
+    ---------------------------------------- */
+
+    .habito-vazio,
+    .compromisso-vazio {
+        padding: 25px 16px;
+    }
+}
+
+
+/* ========================================
+   CELULARES MUITO PEQUENOS
+======================================== */
+
+@media (max-width: 360px) {
+
+    .dashboard-container,
+    .habitos-container,
+    .compromissos-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .dashboard-header {
+        gap: 8px;
+    }
+
+    .dashboard-marca strong {
+        font-size: 17px;
+    }
+
+    .btn-sair {
+        padding: 7px 8px;
+    }
+
+    .dashboard-boas-vindas h1 {
+        font-size: 25px;
+    }
+
+    .resumo-item {
+        padding: 10px;
+    }
+
+    .resumo-icone {
+        width: 32px;
+        height: 32px;
+    }
+
+    .resumo-item strong {
+        font-size: 18px;
+    }
+
+    .habitos-header h1,
+    .compromissos-header h1 {
+        font-size: 22px;
+    }
+
+    .habito-item,
+    .compromisso-item {
+        padding: 11px;
+    }
+}
+
+
+/* ========================================
+   ACESSIBILIDADE / REDUÇÃO DE MOVIMENTO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+
+/* ========================================
+   DISPOSITIVOS COM HOVER
+======================================== */
+
+@media (hover: none) {
+
+    .dashboard-card:hover,
+    .habito-item:hover,
+    .compromisso-item:hover,
+    .habito-acao.editar:hover,
+    .compromisso-acao.editar:hover,
+    .habito-acao.excluir:hover,
+    .compromisso-acao.excluir:hover,
+    .compromisso-acao.status-concluir:hover,
+    .compromisso-acao.status-nao-concluir:hover,
+    .compromisso-acao.status-pendente:hover {
+        transform: none;
+        box-shadow: var(--sombra-card);
+    }
+}
+
+/* ========================================
+   NOTIFICAÇÕES CLAUDIOCK
+======================================== */
+
+.notificacoes-claudio {
+    position: fixed;
+    top: calc(20px + env(safe-area-inset-top));
+    right: 20px;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: min(380px, calc(100vw - 32px));
+
+    pointer-events: none;
+}
+
+.notificacao-claudio {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    width: 100%;
+    padding: 14px 16px;
+
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 30px rgba(41, 50, 65, 0.14);
+
+    color: var(--azul);
+
+    pointer-events: auto;
+
+    animation:
+        notificacaoEntrar 0.25s ease forwards;
+}
+
+.notificacao-icone {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.notificacao-conteudo {
+    flex: 1;
+    min-width: 0;
+}
+
+.notificacao-conteudo strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.notificacao-conteudo p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+.notificacao-fechar {
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--cinza);
+
+    font-size: 18px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.notificacao-fechar:hover {
+    background-color: var(--fundo-hover);
+}
+
+
+/* SUCESSO */
+
+.notificacao-sucesso {
+    border-color: #BFE3D1;
+}
+
+.notificacao-sucesso .notificacao-icone {
+    background-color: #CFEBDD;
+    color: var(--verde-escuro);
+}
+
+
+/* ERRO */
+
+.notificacao-erro {
+    border-color: #F1C5C1;
+}
+
+.notificacao-erro .notificacao-icone {
+    background-color: #F8D9D5;
+    color: var(--vermelho);
+}
+
+
+/* AVISO */
+
+.notificacao-aviso {
+    border-color: #E8D9A8;
+}
+
+.notificacao-aviso .notificacao-icone {
+    background-color: #FFF3C4;
+    color: #8A6D1D;
+}
+
+
+/* INFORMAÇÃO */
+
+.notificacao-info {
+    border-color: #C7D7EA;
+}
+
+.notificacao-info .notificacao-icone {
+    background-color: #DCEAF8;
+    color: #356A9A;
+}
+
+
+/* ========================================
+   MODAL DE CONFIRMAÇÃO
+======================================== */
+
+.modal-confirmacao-claudio {
+    position: fixed;
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background-color: rgba(41, 50, 65, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.modal-confirmacao-claudio.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-confirmacao-conteudo {
+    width: min(100%, 390px);
+
+    padding: 22px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 50px rgba(41, 50, 65, 0.20);
+
+    transform: translateY(10px) scale(0.98);
+
+    transition: transform 0.2s ease;
+}
+
+.modal-confirmacao-claudio.ativo
+.modal-confirmacao-conteudo {
+    transform: translateY(0) scale(1);
+}
+
+.modal-confirmacao-conteudo h3 {
+    margin: 0 0 8px;
+
+    color: var(--azul);
+
+    font-size: 19px;
+    line-height: 1.3;
+}
+
+.modal-confirmacao-conteudo p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.modal-confirmacao-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+.modal-confirmacao-acoes button {
+    min-height: 42px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.modal-confirmacao-cancelar {
+    border: 1px solid var(--borda-input);
+
+    background-color: var(--branco);
+
+    color: var(--azul);
+}
+
+.modal-confirmacao-cancelar:hover {
+    background-color: var(--fundo-hover);
+}
+
+.modal-confirmacao-confirmar {
+    border: none;
 
     background-color: var(--vermelho);
 
     color: var(--branco);
 }
 
-
-.modal-btn-confirmar:hover {
-    background-color: #921D14;
-
-    border-color: #921D14;
+.modal-confirmacao-confirmar:hover {
+    background-color: #951D14;
 }
 
 
 /* ========================================
-   RESPONSIVIDADE DAS NOTIFICAÇÕES
+   ANIMAÇÕES
+======================================== */
+
+@keyframes notificacaoEntrar {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   MOBILE
 ======================================== */
 
 @media (max-width: 480px) {
 
     .notificacoes-claudio {
-        top: calc(
-            12px + env(safe-area-inset-top)
-        );
-
+        top: calc(12px + env(safe-area-inset-top));
         right: 12px;
+        left: 12px;
 
-        width: calc(100vw - 24px);
+        width: auto;
     }
 
-
     .notificacao-claudio {
-        min-height: 56px;
-
-        padding: 11px 12px;
-
+        padding: 13px 14px;
         border-radius: 13px;
     }
 
-
-    .notificacao-texto {
+    .notificacao-conteudo strong {
         font-size: 13px;
     }
 
-
-    .notificacao-icone {
-        width: 32px;
-        height: 32px;
-
-        font-size: 15px;
+    .notificacao-conteudo p {
+        font-size: 12px;
     }
-
 
     .modal-confirmacao-claudio {
-        padding: 16px;
-    }
+        align-items: flex-end;
 
+        padding: 12px;
+    }
 
     .modal-confirmacao-conteudo {
-        padding: 24px 18px 18px;
+        width: 100%;
 
-        border-radius: 16px;
+        padding: 20px;
+
+        border-radius: 18px;
     }
-
 
     .modal-confirmacao-acoes {
         flex-direction: column-reverse;
-
-        gap: 8px;
     }
 
-
-    .modal-btn-cancelar,
-    .modal-btn-confirmar {
+    .modal-confirmacao-acoes button {
         width: 100%;
-
         min-height: 46px;
     }
 }
@@ -538,11 +2322,9 @@
 @media (prefers-reduced-motion: reduce) {
 
     .notificacao-claudio,
-    .notificacao-claudio.saindo,
     .modal-confirmacao-claudio,
     .modal-confirmacao-conteudo {
-        animation: none;
-
-        transition: none;
+        animation: none !important;
+        transition: none !important;
     }
 }
